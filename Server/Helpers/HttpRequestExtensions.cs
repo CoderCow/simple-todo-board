@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace Asp2017.Server.Helpers {
   public static class HttpRequestExtensions {
-    public static IRequest AbstractRequestInfo(this HttpRequest request) {
-      var requestSimplified = new IRequest {
-        cookies = request.Cookies,
-        headers = request.Headers,
-        host = request.Host
+    public static SimpleRequest AbstractRequestInfo(this HttpRequest request) {
+      var requestSimplified = new SimpleRequest {
+        Cookies = request.Cookies,
+        Headers = request.Headers,
+        Host = request.Host
       };
       
       return requestSimplified;
