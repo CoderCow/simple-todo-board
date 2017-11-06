@@ -3,7 +3,6 @@ import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET } from "@angular/
 import { Meta, Title, DOCUMENT, MetaDefinition } from "@angular/platform-browser";
 import { Subscription } from "rxjs/Subscription";
 import { isPlatformServer } from "@angular/common";
-import { LinkService } from "./shared/link.service";
 
 // i18n support
 import { TranslateService } from "@ngx-translate/core";
@@ -28,7 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private title: Title,
     private meta: Meta,
-    private linkService: LinkService,
     public translate: TranslateService,
     @Inject(REQUEST) private request
   ) {
@@ -78,12 +76,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.title.setTitle(title);
 
     const metaData = routeData.meta || [];
-    const linksData = routeData.links || [];
 
     for (let i = 0; i < metaData.length; i++)
       this.meta.updateTag(metaData[i]);
-
-    for (let i = 0; i < linksData.length; i++)
-      this.linkService.addTag(linksData[i]);
   }
 }

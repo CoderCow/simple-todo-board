@@ -20,7 +20,6 @@ import { CounterComponent } from "./containers/counter/counter.component";
 import { NotFoundComponent } from "./containers/not-found/not-found.component";
 import { NgxBootstrapComponent } from "./containers/ngx-bootstrap-demo/ngx-bootstrap.component";
 
-import { LinkService } from "./shared/link.service";
 import { UserService } from "./shared/user.service";
 // import { ConnectionResolver } from './shared/route.resolver';
 import { ORIGIN_URL } from "./shared/constants/baseurl.constants";
@@ -223,7 +222,6 @@ export function createTranslateLoader(http: Http, baseHref) {
       })
   ],
   providers: [
-    LinkService,
     UserService,
     // ConnectionResolver,
     TranslateModule
