@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation, RendererFactory2, PLATFORM_ID } from "@angular/core";
 import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET } from "@angular/router";
-import { Meta, Title, DOCUMENT, MetaDefinition } from "@angular/platform-browser";
+import { Title, DOCUMENT, MetaDefinition } from "@angular/platform-browser";
 import { Subscription } from "rxjs/Subscription";
 import { isPlatformServer } from "@angular/common";
 
@@ -26,7 +26,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private title: Title,
-    private meta: Meta,
     public translate: TranslateService,
     @Inject(REQUEST) private request
   ) {
@@ -74,10 +73,5 @@ export class AppComponent implements OnInit, OnDestroy {
       : `${this.defaultPageTitle} - ${this.endPageTitle}`;
 
     this.title.setTitle(title);
-
-    const metaData = routeData.meta || [];
-
-    for (let i = 0; i < metaData.length; i++)
-      this.meta.updateTag(metaData[i]);
   }
 }
