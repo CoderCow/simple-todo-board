@@ -26,6 +26,81 @@ import { UserService } from "./shared/user.service";
 import { ORIGIN_URL } from "./shared/constants/baseurl.constants";
 import { TransferHttpModule } from "../modules/transfer-http/transfer-http.module";
 
+// material design
+import { BrowserModule } from '@angular/platform-browser';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule,
+} from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
+
+@NgModule({
+  exports: [
+    CdkTableModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+  ]
+})
+export class MaterialModule {}
+
 export function createTranslateLoader(http: Http, baseHref) {
   // Temporary Azure hack
   if (baseHref === null && typeof window !== "undefined") {
@@ -48,11 +123,13 @@ export function createTranslateLoader(http: Http, baseHref) {
     NgxBootstrapComponent
   ],
   imports: [
+    BrowserModule,
     CommonModule,
     HttpModule,
     FormsModule,
     Ng2BootstrapModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
     TransferHttpModule, // Our Http TransferData method
+    MaterialModule,
 
     // i18n support
     TranslateModule.forRoot({

@@ -11,9 +11,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css" />
   <!-- <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" /> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   @Html.Raw(ViewData["Styles"])
-
 </head>
 <body>
   @RenderBody()
@@ -22,7 +22,7 @@
   @Html.Raw(ViewData["TransferData"])
   @Html.Raw(ViewData["Scripts"])
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
   @RenderSection("scripts", false)
-
 </body>
 </html>
