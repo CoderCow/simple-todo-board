@@ -61,6 +61,7 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { TodoGroupComponent } from './components/todo-group/todo-group.component';
 
 @NgModule({
   exports: [
@@ -119,7 +120,8 @@ export function createTranslateLoader(http: Http, baseHref) {
     HomeComponent,
     // ChatComponent,
     NotFoundComponent,
-    NgxBootstrapComponent
+    NgxBootstrapComponent,
+    TodoGroupComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+.groupbox-wrapper {
+  border: 1px solid rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24);
+  margin: 4px;
+}
+
+.groupbox-title {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: rgba(0, 0, 0, .54);
+  background: rgba(0, 0, 0, .03);
+}
+
+.groupbox-body {
+  padding: 30px;
+}
