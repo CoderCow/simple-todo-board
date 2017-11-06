@@ -1,3 +1,5 @@
 export interface ITodoItem {
-  // TODO: add ITodoItem members
+  id: number;
+  title: string;
+  description: string;
 }
