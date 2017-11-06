@@ -1,4 +1,3 @@
-using Asp2017.Server.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -10,8 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using SimpleTodoList.Server.Models;
 
-namespace Asp2017.Server.Helpers {
+namespace SimpleTodoList.Server.Helpers {
   public static class HttpRequestExtensions {
     public static SimpleRequest AbstractRequestInfo(this HttpRequest request) {
       var requestSimplified = new SimpleRequest {

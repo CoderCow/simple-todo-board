@@ -1,4 +1,4 @@
-using Asp2017.Server.Helpers;
+using SimpleTodoList.Server.Helpers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Prerendering;
@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
 using System;
-using Asp2017.Server.Models;
+using SimpleTodoList.Server.Models;
 
-namespace AspCoreServer.Controllers {
+namespace SimpleTodoList.Controllers {
   public class HomeController : Controller {
     [HttpGet]
     public ViewResult Index() => this.View();

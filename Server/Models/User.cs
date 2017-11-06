@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AspCoreServer.Models {
+namespace SimpleTodoList.Models {
   public class User {
     public int Id { get; set; }
     public string Name { get; set; }

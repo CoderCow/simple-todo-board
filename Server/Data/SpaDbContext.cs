@@ -1,7 +1,7 @@
-using AspCoreServer.Models;
 using Microsoft.EntityFrameworkCore;
+using SimpleTodoList.Models;
 
-namespace AspCoreServer.Data {
+namespace SimpleTodoList.Data {
   public class SpaDbContext : DbContext {
     //List of DB Models - Add your DB models here
     public DbSet<User> User { get; set; }

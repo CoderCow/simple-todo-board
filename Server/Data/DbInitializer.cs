@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using AspCoreServer.Models;
-using AspCoreServer;
+using SimpleTodoList;
+using SimpleTodoList.Models;
 
-namespace AspCoreServer.Data {
+namespace SimpleTodoList.Data {
   public static class DbInitializer {
     public static void Initialize(SpaDbContext context) {
       context.Database.EnsureCreated();

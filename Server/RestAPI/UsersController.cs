@@ -1,12 +1,12 @@
-using AspCoreServer.Data;
-using AspCoreServer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using SimpleTodoList.Data;
+using SimpleTodoList.Models;
 
-namespace AspCoreServer.Controllers {
+namespace SimpleTodoList.Controllers {
   [Route("api/[controller]")]
   public class UsersController : Controller {
     private readonly SpaDbContext context;
