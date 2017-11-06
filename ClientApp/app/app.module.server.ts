@@ -26,9 +26,7 @@ import { ServerPrebootModule } from "preboot/server";
   ]
 })
 export class AppModule {
-
-  constructor(private transferState: TransferState) {
-  }
+  constructor(private transferState: TransferState) {}
 
   // Gotcha (needs to be an arrow function)
   public ngOnBootstrap = () => {

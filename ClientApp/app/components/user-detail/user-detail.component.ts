@@ -1,4 +1,4 @@
-﻿import { Component, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { IUser } from "../../models/User";
 import { UserService } from "../../shared/user.service";
 
@@ -10,9 +10,7 @@ export class UserDetailComponent {
   @Input()
   public user: IUser;
 
-  constructor(private userService: UserService) {
-  }
-
+  constructor(private userService: UserService) {}
 
   public updateUser(user) {
     this.userService.updateUser(user).subscribe(result => {

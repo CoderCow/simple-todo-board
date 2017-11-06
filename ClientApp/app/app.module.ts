@@ -152,5 +152,4 @@ export function createTranslateLoader(http: Http, baseHref) {
     TranslateModule
   ]
 })
-export class AppModuleShared {
-}
+export class AppModuleShared {}

@@ -14,13 +14,11 @@ using Asp2017.Server.Models;
 namespace AspCoreServer.Controllers {
   public class HomeController : Controller {
     [HttpGet]
-    public async Task<IActionResult> Index() {
-      return View();
-    }
+    public ViewResult Index() => this.View();
 
     [HttpGet]
     [Route("sitemap.xml")]
-    public async Task<IActionResult> SitemapXml() {
+    public ContentResult SitemapXml() {
       var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 
       xml += "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
@@ -34,11 +32,9 @@ namespace AspCoreServer.Controllers {
       xml += "</sitemap>";
       xml += "</sitemapindex>";
 
-      return Content(xml, "text/xml");
+      return this.Content(xml, "text/xml");
     }
 
-    public IActionResult Error() {
-      return View();
-    }
+    public ViewResult Error() => this.View();
   }
 }

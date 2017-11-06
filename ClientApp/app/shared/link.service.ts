@@ -12,21 +12,18 @@ import { isPlatformServer } from "@angular/common";
 
 @Injectable()
 export class LinkService {
-
   private isServer: boolean = isPlatformServer(this.platform_id);
 
   constructor(
     private rendererFactory: RendererFactory2,
     @Inject(DOCUMENT) private document,
     @Inject(PLATFORM_ID) private platform_id
-  ) {
-  }
+  ) {}
 
   /**
    * Inject the State into the bottom of the <head>
    */
   public addTag(tag: LinkDefinition, forceCreation?: boolean) {
-
     try {
       const renderer = this.rendererFactory.createRenderer(this.document,
         {
@@ -38,15 +35,14 @@ export class LinkService {
 
       const link = renderer.createElement("link");
       const head = this.document.head;
-      const selector = this._parseSelector(tag);
+      const selector = this.parseSelector(tag);
 
-      if (head === null) {
+      if (head === null)
         throw new Error("<head> not found within DOCUMENT.");
-      }
 
-      Object.keys(tag).forEach((prop: string) => {
-        return renderer.setAttribute(link, prop, tag[prop]);
-      });
+      Object.keys(tag).forEach((prop: string) =>
+        renderer.setAttribute(link, prop, tag[prop])
+      );
 
       // [TODO]: get them to update the existing one (if it exists) ?
       renderer.appendChild(head, link);
@@ -71,14 +67,13 @@ export class LinkService {
   //     return this._dom.querySelector(this._doc, `meta[${attrSelector}]`);
   // }
 
-  private _parseSelector(tag: LinkDefinition): string {
+  private parseSelector(tag: LinkDefinition): string {
     // Possibly re-work this
     const attr = tag.rel ? "rel" : "hreflang";
     return `${attr}="${tag[attr]}"`;
   }
 
 }
-
 
 export declare type LinkDefinition = {
   charset?: string;

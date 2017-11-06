@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Asp2017.Server.Models {
   public class TransferData {
-    public dynamic request { get; set; }
+    public dynamic Request { get; set; }
 
     // Your data here ?
-    public object thisCameFromDotNET { get; set; }
+    public object ThisCameFromDotNet { get; set; }
   }
 }

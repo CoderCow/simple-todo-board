@@ -1,8 +1,8 @@
-﻿import {
+import {
   Component, OnInit,
   // animation imports
   trigger, state, style, transition, animate, Inject
-  } from "@angular/core";
+} from "@angular/core";
 import { IUser } from "../../models/User";
 import { UserService } from "../../shared/user.service";
 
@@ -34,8 +34,7 @@ export class UsersComponent implements OnInit {
   public selectedUser: IUser;
 
   // Use "constructor"s only for dependency injection
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) {}
 
   // Here you want to handle anything with @Input()'s @Output()'s
   // Data retrieval / etc - this is when the Component is "ready" and wired up
@@ -51,7 +50,7 @@ export class UsersComponent implements OnInit {
     this.selectedUser = user;
   }
 
-  public deleteUser(user) {
+  public deleteUser(user: IUser) {
     this.userService.deleteUser(user).subscribe(result => {
         console.log("Delete user result: ", result);
         if (result.ok) {
@@ -64,7 +63,7 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  public addUser(newUserName) {
+  public addUser(newUserName: string) {
     this.userService.addUser(newUserName).subscribe(result => {
         console.log("Post user result: ", result);
         if (result.ok) {

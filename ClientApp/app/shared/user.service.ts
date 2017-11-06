@@ -1,4 +1,4 @@
-﻿import { Injectable, Inject } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { Http, URLSearchParams } from "@angular/http";
 import { APP_BASE_HREF } from "@angular/common";
 import { ORIGIN_URL } from "./constants/baseurl.constants";
@@ -13,7 +13,6 @@ export class UserService {
     TransferHttp, // Use only for GETS that you want re-used between Server render -> Client render
     private http: Http, // Use for everything else
     @Inject(ORIGIN_URL) private baseUrl: string) {
-
   }
 
   public getUsers(): Observable<IUser[]> {

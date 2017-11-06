@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation, RendererFactory2, PLATFORM_ID } from "@angular/core";
+import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation, RendererFactory2, PLATFORM_ID } from "@angular/core";
 import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET } from "@angular/router";
 import { Meta, Title, DOCUMENT, MetaDefinition } from "@angular/platform-browser";
 import { Subscription } from "rxjs/Subscription";
@@ -16,7 +16,6 @@ import { REQUEST } from "./shared/constants/request";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
-
   // This will go at the END of your title for example "Home - Angular Universal..." <-- after the dash (-)
   private endPageTitle = "Angular Universal and ASP.NET Core Starter";
   // If no Title is provided, we'll use a default one before the dash(-)
@@ -47,50 +46,44 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     // Change "Title" on every navigationEnd event
     // Titles come from the data.title property on all Routes (see app.routes.ts)
-    this._changeTitleOnNavigation();
+    this.registerNavigationSubscriber();
   }
 
   public ngOnDestroy() {
-    // Subscription clean-up
     this.routerSub$.unsubscribe();
   }
 
-  private _changeTitleOnNavigation() {
-
+  private registerNavigationSubscriber() {
     this.routerSub$ = this.router.events
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
       .map(route => {
         while (route.firstChild)
           route = route.firstChild;
+
         return route;
       })
       .filter(route => route.outlet === "primary")
       .mergeMap(route => route.data)
-      .subscribe((event) => {
-        this._setMetaAndLinks(event);
-      });
+      .subscribe(this.refreshPageHeader.bind(this));
   }
 
-  private _setMetaAndLinks(event) {
-
+  /* Sets some meta information of the <head> in respect to the route. */
+  private refreshPageHeader(routeData: any) {
     // Set Title if available, otherwise leave the default Title
-    const title = event["title"]
-      ? `${event["title"]} - ${this.endPageTitle}`
+    const title = routeData.title
+      ? `${routeData.title} - ${this.endPageTitle}`
       : `${this.defaultPageTitle} - ${this.endPageTitle}`;
 
     this.title.setTitle(title);
 
-    const metaData = event["meta"] || [];
-    const linksData = event["links"] || [];
+    const metaData = routeData.meta || [];
+    const linksData = routeData.links || [];
 
-    for (let i = 0; i < metaData.length; i++) {
+    for (let i = 0; i < metaData.length; i++)
       this.meta.updateTag(metaData[i]);
-    }
 
-    for (let i = 0; i < linksData.length; i++) {
+    for (let i = 0; i < linksData.length; i++)
       this.linkService.addTag(linksData[i]);
-    }
   }
-
 }

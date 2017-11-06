@@ -17,6 +17,6 @@ export class NavMenuComponent {
   }
 
   public collapseMenu() {
-    this.collapse = "collapse"
+    this.collapse = "collapse";
   }
 }

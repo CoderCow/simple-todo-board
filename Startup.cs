@@ -79,8 +79,7 @@ namespace AspCoreServer {
               new {controller = "Home", action = "Index"});
           });
         });
-      }
-      else {
+      } else {
         app.UseMvc(routes => {
           routes.MapRoute(
             "default",
