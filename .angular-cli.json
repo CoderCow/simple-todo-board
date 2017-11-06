@@ -14,7 +14,7 @@
       "spec": false
     }
   },
-  "lint":[
+  "lint": [
     {
       "project": "ClientApp/tsconfig.app.json"
     },

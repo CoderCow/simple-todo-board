@@ -1,26 +1,27 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
 
 @Injectable()
 export class TransferState {
   private _map = new Map<string, any>();
 
-  constructor() { }
+  constructor() {
+  }
 
-  keys() {
+  public keys() {
     return this._map.keys();
   }
 
-  get(key: string): any {
+  public get(key: string): any {
     const cachedValue = this._map.get(key);
     this._map.delete(key);
     return cachedValue;
   }
 
-  set(key: string, value: any): Map<string, any> {
+  public set(key: string, value: any): Map<string, any> {
     return this._map.set(key, value);
   }
 
-  toJson(): any {
+  public toJson(): any {
     const obj = {};
     Array.from(this.keys())
       .forEach(key => {
@@ -29,12 +30,13 @@ export class TransferState {
     return obj;
   }
 
-  initialize(obj: any): void {
+  public initialize(obj: any): void {
     Object.keys(obj)
       .forEach(key => {
         this.set(key, obj[key]);
       });
   }
 
-  inject(): void { }
+  public inject(): void {
+  }
 }

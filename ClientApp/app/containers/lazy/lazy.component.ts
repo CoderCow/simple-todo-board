@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'lazy-view',
+  selector: "lazy-view",
   template: `
     <h1>Lazy-Loaded Component!</h1>
     <blockquote>
@@ -10,4 +10,5 @@ import { Component } from '@angular/core';
     </blockquote>
   `
 })
-export class LazyComponent { }
+export class LazyComponent {
+}

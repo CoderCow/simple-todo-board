@@ -12,11 +12,11 @@
 
 <p>
   <button type="button" class="btn btn-primary btn-sm"
-          (click)="group.isOpen = !group.isOpen">
+    (click)="group.isOpen = !group.isOpen">
     Toggle last panel
   </button>
   <button type="button" class="btn btn-primary btn-sm"
-          (click)="status.isFirstDisabled = ! status.isFirstDisabled">
+    (click)="status.isFirstDisabled = ! status.isFirstDisabled">
     Enable / Disable first panel
   </button>
 </p>
@@ -31,8 +31,8 @@
 
 <accordion [closeOthers]="oneAtATime">
   <accordion-group heading="Static Header, initially expanded"
-                   [isOpen]="status.isFirstOpen"
-                   [isDisabled]="status.isFirstDisabled">
+    [isOpen]="status.isFirstOpen"
+    [isDisabled]="status.isFirstDisabled">
     This content is straight in the template.
   </accordion-group>
   <accordion-group *ngFor="let group of groups" [heading]="group.title">
@@ -47,7 +47,7 @@
     <div accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+        [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
     </div>
     This is just some content to illustrate fancy headings.
   </accordion-group>

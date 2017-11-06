@@ -1,7 +1,6 @@
 using Asp2017.Server.Helpers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.AspNetCore.SpaServices.Prerendering;
 using Microsoft.AspNetCore.NodeServices;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,13 +11,10 @@ using System.Diagnostics;
 using System;
 using Asp2017.Server.Models;
 
-namespace AspCoreServer.Controllers
-{
-  public class HomeController : Controller
-  {
+namespace AspCoreServer.Controllers {
+  public class HomeController : Controller {
     [HttpGet]
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
       var prerenderResult = await Request.BuildPrerender();
 
       ViewData["SpaHtml"] = prerenderResult.Html; // our <app> from Angular
@@ -34,9 +30,8 @@ namespace AspCoreServer.Controllers
 
     [HttpGet]
     [Route("sitemap.xml")]
-    public async Task<IActionResult> SitemapXml()
-    {
-      String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+    public async Task<IActionResult> SitemapXml() {
+      var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 
       xml += "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
       xml += "<sitemap>";
@@ -50,11 +45,9 @@ namespace AspCoreServer.Controllers
       xml += "</sitemapindex>";
 
       return Content(xml, "text/xml");
-
     }
 
-    public IActionResult Error()
-    {
+    public IActionResult Error() {
       return View();
     }
   }

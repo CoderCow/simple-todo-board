@@ -12,16 +12,18 @@
   </button>
 </div>
 
-<p *ngIf="!users"><em>Loading...</em></p>
+<p *ngIf="!users">
+  <em>Loading...</em>
+</p>
 <h2>Users</h2>
 <ul class="users">
   <li *ngFor="let user of users"
-      [class.selected]="user === selectedUser"
-      (click)="onSelect(user)"
-      [@flyInOut]>
+    [class.selected]="user === selectedUser"
+    (click)="onSelect(user)"
+    [@flyInOut]>
     <span class="badge">{{user.id}}</span> {{user.name}}
     <button class="delete"
-            (click)="deleteUser(user); $event.stopPropagation()">
+      (click)="deleteUser(user); $event.stopPropagation()">
       x
     </button>
   </li>
