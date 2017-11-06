@@ -10,8 +10,8 @@
   </mat-grid-tile>
 </mat-grid-list>-->
 
-<div class="mat-grid">
-  <todo-group [group]="todoGroup" class="mat-cell"></todo-group>
-  <todo-group [group]="doingGroup" class="mat-cell"></todo-group>
-  <todo-group [group]="doneGroup" class="mat-cell"></todo-group>
+<div fxFill fxLayout="row" fxLayoutGap="30px">
+  <todo-group [group]="todoGroup" fxFlex="33.33"></todo-group>
+  <todo-group [group]="doingGroup" fxFlex="33.33"></todo-group>
+  <todo-group [group]="doneGroup" fxFlex="33.33"></todo-group>
 </div>

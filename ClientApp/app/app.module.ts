@@ -25,6 +25,9 @@ import { UserService } from "./shared/user.service";
 import { ORIGIN_URL } from "./shared/constants/baseurl.constants";
 import { TransferHttpModule } from "../modules/transfer-http/transfer-http.module";
 
+// https://github.com/angular/flex-layout/wiki/Fast-Starts
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 // material design
 import { BrowserModule } from '@angular/platform-browser';
 import {
@@ -130,6 +133,7 @@ export function createTranslateLoader(http: Http, baseHref) {
     FormsModule,
     Ng2BootstrapModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
     TransferHttpModule, // Our Http TransferData method
+    FlexLayoutModule,
     MaterialModule,
 
     // i18n support
