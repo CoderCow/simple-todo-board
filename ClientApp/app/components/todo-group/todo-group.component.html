@@ -3,7 +3,7 @@
   <div class="groupbox-title">
      {{group.title}}
   </div>
-  <div class="groupbox-body">
-    <todo-item *ngFor="let todoItem of group.todos" [todo]="todoItem" (deleteClicked)="deleteItem(todoItem)"></todo-item>
+  <div class="groupbox-body" dnd-sortable-container [sortableData]="group.todos">
+    <todo-item *ngFor="let todoItem of group.todos; let i = index" [todo]="todoItem" dnd-sortable [sortableIndex]="i" (deleteClicked)="deleteItem(todoItem)"></todo-item>
   </div>
 </div>

@@ -13,6 +13,8 @@
 
 .groupbox-body {
   padding: 30px;
+  min-height: 600px;
+  cursor: default !important; // need important to override ng2-dnd's cursor setting on the element
 }
 
 .groupbox-edge-button {

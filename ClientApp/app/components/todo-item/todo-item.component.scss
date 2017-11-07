@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 mat-card {
   font-size: 1em;
   margin-bottom: 20px;
@@ -14,10 +18,12 @@ mat-card {
 .todo-title {
   font-size: 1.5em;
   font-weight: bold;
+  cursor: text;
 }
 
 .todo-description {
   font-size: 1em;
+  cursor: text;
 }
 
 textarea.todo-description {

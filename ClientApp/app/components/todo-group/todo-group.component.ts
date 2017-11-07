@@ -21,12 +21,19 @@ export class TodoGroupComponent {
 
   constructor() {}
 
-  public addItem() {
-    let newItem = Object.assign({}, TodoGroupComponent.newItemTemplate);
-    this.group.todos.splice(0, 0, newItem);
+  public itemDrop(todoItem: ITodoItem) {
+    this.addItem(todoItem);
+  }
+
+  public addItem(item: ITodoItem = null) {
+    if (!item)
+      item = Object.assign({}, TodoGroupComponent.newItemTemplate);
+
+    this.group.todos.splice(0, 0, item);
   }
 
   public deleteItem(item: ITodoItem) {
+    debugger;
     let itemIndex = this.group.todos.indexOf(item);
     if (itemIndex > -1)
       this.group.todos.splice(itemIndex, 1);
