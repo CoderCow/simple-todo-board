@@ -8,7 +8,7 @@ var exampleTodoItems: ITodoItem[] = [
   {
     id: 0,
     title: "Todo Item 1",
-    description: "Lorem ipsumLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    description: "Lorem ipsumLorem ipsum dolor sit amet, consetetur sadipscing elitr.\nSed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
   },
   {
     id: 1,

@@ -1,3 +1,27 @@
 mat-card {
+  font-size: 1em;
   margin-bottom: 20px;
+}
+
+.inline-edit {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: 0;
+}
+
+.todo-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.todo-description {
+  font-size: 1em;
+}
+
+textarea.todo-description {
+  display: block;
+  resize: none;
+  margin-top: 21px;
 }
