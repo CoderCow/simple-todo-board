@@ -8,10 +8,23 @@ import { ITodoItem } from "../../models/ITodoItem";
   styleUrls: ['./todo-group.component.scss']
 })
 export class TodoGroupComponent {
+  private static newItemTemplate: Readonly<ITodoItem> = Object.freeze({
+    id: -1,
+    title: 'Todo',
+    description: 'Fill me'
+  });
+
   @Input()
   public group: ITodoGroup;
+  @Input()
+  public allowAdd: boolean = false;
 
   constructor() {}
+
+  public addItem() {
+    let newItem = Object.assign({}, TodoGroupComponent.newItemTemplate);
+    this.group.todos.splice(0, 0, newItem);
+  }
 
   public deleteItem(item: ITodoItem) {
     let itemIndex = this.group.todos.indexOf(item);

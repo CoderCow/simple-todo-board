@@ -1,4 +1,5 @@
 <div class="groupbox-wrapper">
+  <button *ngIf="allowAdd" mat-fab class="groupbox-edge-button" (click)="addItem()">+</button>
   <div class="groupbox-title">
      {{group.title}}
   </div>

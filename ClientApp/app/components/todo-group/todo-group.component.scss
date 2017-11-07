@@ -1,6 +1,7 @@
 .groupbox-wrapper {
   margin: 4px;
   background: rgba(0, 0, 0, .03);
+  position: relative;
 }
 
 .groupbox-title {
@@ -12,4 +13,10 @@
 
 .groupbox-body {
   padding: 30px;
+}
+
+.groupbox-edge-button {
+  position: absolute;
+  right: 20px;
+  top: -15px;
 }
