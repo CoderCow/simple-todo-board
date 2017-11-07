@@ -19,7 +19,7 @@
   <ng-template #editMode>
     <mat-card-content>
       <input [(ngModel)]="editingTodo.title" class="todo-title inline-edit" #beginEditFocusTarget>
-      <textarea [(ngModel)]="editingTodo.description" class="todo-description inline-edit" rows="5" cols="10"></textarea>
+      <textarea [(ngModel)]="editingTodo.description" class="todo-description inline-edit" rows="1" cols="10" autosize></textarea>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-icon-button (click)="endEdit(true)" title="save">

@@ -105,6 +105,9 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 })
 export class MaterialModule {}
 
+// autoresize for textareas
+import { Autosize } from 'angular2-autosize';
+
 export function createTranslateLoader(http: Http, baseHref) {
   // Temporary Azure hack
   if (baseHref === null && typeof window !== "undefined") {
@@ -126,7 +129,8 @@ export function createTranslateLoader(http: Http, baseHref) {
     NotFoundComponent,
     NgxBootstrapComponent,
     TodoGroupComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    Autosize,
   ],
   imports: [
     BrowserModule,
