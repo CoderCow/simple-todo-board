@@ -6,11 +6,11 @@
       </h3>
       <p class="todo-description" [innerHTML]="todoDescriptionHtml" (dblclick)="beginEdit('textarea.todo-description')"></p>
     </mat-card-content>
-    <mat-card-actions title="delete" align="right">
+    <mat-card-actions align="right">
       <button mat-icon-button (click)="beginEdit()" title="edit">
         <mat-icon>create</mat-icon>
       </button>
-      <button mat-icon-button (click)="delete()">
+      <button mat-icon-button (click)="delete()" title="delete">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-card-actions>
