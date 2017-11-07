@@ -65,6 +65,7 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TodoGroupComponent } from './components/todo-group/todo-group.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   exports: [
@@ -124,7 +125,8 @@ export function createTranslateLoader(http: Http, baseHref) {
     // ChatComponent,
     NotFoundComponent,
     NgxBootstrapComponent,
-    TodoGroupComponent
+    TodoGroupComponent,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,

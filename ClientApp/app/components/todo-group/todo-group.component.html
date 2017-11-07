@@ -3,8 +3,6 @@
      {{group.title}}
   </div>
   <div class="groupbox-body">
-    <!--
-    <todo-item *ngFor="let todoItem of group.todos" [item-data]="todoItem" />
-    -->
+    <todo-item *ngFor="let todoItem of group.todos" [todo]="todoItem" (deleteClicked)="deleteItem(todoItem)"></todo-item>
   </div>
 </div>
