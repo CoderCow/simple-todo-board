@@ -106,7 +106,12 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 export class MaterialModule {}
 
 // autoresize for textareas
+// https://github.com/stevepapa/angular2-autosize
 import { Autosize } from 'angular2-autosize';
+
+// drag and drop
+// https://github.com/akserg/ng2-dnd
+import {DndModule} from 'ng2-dnd';
 
 export function createTranslateLoader(http: Http, baseHref) {
   // Temporary Azure hack
@@ -141,6 +146,7 @@ export function createTranslateLoader(http: Http, baseHref) {
     TransferHttpModule, // Our Http TransferData method
     FlexLayoutModule,
     MaterialModule,
+    DndModule.forRoot(),
 
     // i18n support
     TranslateModule.forRoot({
