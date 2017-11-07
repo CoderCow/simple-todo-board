@@ -26,18 +26,22 @@ export class TodoItemComponent {
   @Output()
   public deleteClicked = new EventEmitter();
 
-  @ViewChild('beginEditFocusTarget')
-  set beginEditFocusTarget(element: ElementRef) {
-    // once the target element becomes available, focus it
-    if (element !== undefined)
-      element.nativeElement.focus();
-  }
-
   constructor(private domSanitizer: DomSanitizer) {}
 
-  public beginEdit() {
+  // region Editing
+  private editFocusTargetQuerySelector: string;
+
+  @ViewChild('editCardContentElement')
+  set editCardContentElement(element: ElementRef) {
+    // once the edit card becomes available
+    if (element !== undefined)
+      element.nativeElement.querySelector(this.editFocusTargetQuerySelector).focus();
+  }
+
+  public beginEdit(editFocusTargetQuerySelector: string = "input.todo-title") {
     this.editingTodo = Object.assign({}, this.todo);
     this.isEditMode = true;
+    this.editFocusTargetQuerySelector = editFocusTargetQuerySelector;
   }
 
   public endEdit(doSave: boolean) {
@@ -47,6 +51,8 @@ export class TodoItemComponent {
 
     this.isEditMode = false;
   }
+
+  // endregion
 
   public delete() {
     this.deleteClicked.emit();

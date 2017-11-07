@@ -1,10 +1,10 @@
 <mat-card>
   <ng-template #normalMode>
     <mat-card-content>
-      <h3 class="todo-title">
+      <h3 class="todo-title" (dblclick)="beginEdit()">
         {{todo.title}}
       </h3>
-      <p class="todo-description" [innerHTML]="todoDescriptionHtml"></p>
+      <p class="todo-description" [innerHTML]="todoDescriptionHtml" (dblclick)="beginEdit('textarea.todo-description')"></p>
     </mat-card-content>
     <mat-card-actions title="delete" align="right">
       <button mat-icon-button (click)="beginEdit()" title="edit">
@@ -17,8 +17,8 @@
   </ng-template>
 
   <ng-template #editMode>
-    <mat-card-content>
-      <input [(ngModel)]="editingTodo.title" class="todo-title inline-edit" #beginEditFocusTarget>
+    <mat-card-content #editCardContentElement>
+      <input [(ngModel)]="editingTodo.title" class="todo-title inline-edit">
       <textarea [(ngModel)]="editingTodo.description" class="todo-description inline-edit" rows="1" cols="10" autosize></textarea>
     </mat-card-content>
     <mat-card-actions align="end">

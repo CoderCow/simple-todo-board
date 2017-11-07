@@ -21,10 +21,6 @@ export class TodoGroupComponent {
 
   constructor() {}
 
-  public itemDrop(todoItem: ITodoItem) {
-    this.addItem(todoItem);
-  }
-
   public addItem(item: ITodoItem = null) {
     if (!item)
       item = Object.assign({}, TodoGroupComponent.newItemTemplate);
