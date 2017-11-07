@@ -7,6 +7,10 @@ mat-card {
   margin-bottom: 20px;
 }
 
+mat-card-actions {
+  padding: 0;
+}
+
 .inline-edit {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: transparent;
@@ -30,4 +34,8 @@ textarea.todo-description {
   display: block;
   resize: none;
   margin-top: 21px;
+}
+
+:host(.dnd-sortable-drag) mat-card {
+  border: 2px dashed rgba(0, 0, 0, .6);
 }

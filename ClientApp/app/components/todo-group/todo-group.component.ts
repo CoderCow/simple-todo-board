@@ -29,7 +29,6 @@ export class TodoGroupComponent {
   }
 
   public deleteItem(item: ITodoItem) {
-    debugger;
     let itemIndex = this.group.todos.indexOf(item);
     if (itemIndex > -1)
       this.group.todos.splice(itemIndex, 1);
