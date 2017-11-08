@@ -33,12 +33,15 @@ export class TodoItemComponent {
 
   @ViewChild('editCardContentElement')
   set editCardContentElement(element: ElementRef) {
-    // once the edit card becomes available
+    // when the edit card becomes available
     if (element !== undefined)
       element.nativeElement.querySelector(this.editFocusTargetQuerySelector).focus();
   }
 
   public beginEdit(editFocusTargetQuerySelector: string = "input.todo-title") {
+    if (this.isEditMode)
+      return;
+
     this.editingTodo = Object.assign({}, this.todo);
     this.isEditMode = true;
     this.editFocusTargetQuerySelector = editFocusTargetQuerySelector;
@@ -51,7 +54,6 @@ export class TodoItemComponent {
 
     this.isEditMode = false;
   }
-
   // endregion
 
   public delete() {
