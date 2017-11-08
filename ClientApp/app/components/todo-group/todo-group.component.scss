@@ -1,3 +1,11 @@
+:host {
+  --cardBgColor: #FFFFFF;
+}
+
+.done-cards {
+  --cardBgColor: #CCFFCC;
+}
+
 .groupbox-wrapper {
   margin: 4px;
   background: rgba(0, 0, 0, .03);

@@ -18,6 +18,8 @@ export class TodoGroupComponent {
   public group: ITodoGroup;
   @Input()
   public allowAdd: boolean = false;
+  @Input()
+  public containsDoneCards: boolean = false;
 
   constructor() {}
 
