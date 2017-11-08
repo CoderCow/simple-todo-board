@@ -14,7 +14,6 @@ import { ngAspnetCoreEngine, IEngineOptions, createTransferScript } from "./poly
 enableProdMode();
 
 export default createServerRenderer((params) => {
-
   // Platform-server provider configuration
   const setupOptions: IEngineOptions = {
     appSelector: "<app></app>",
@@ -28,8 +27,7 @@ export default createServerRenderer((params) => {
   return ngAspnetCoreEngine(setupOptions).then(response => {
     // Apply your transferData to response.globals
     response.globals.transferData = createTransferScript({
-      someData: "Transfer this to the client on the window.TRANSFER_CACHE {} object",
-      fromDotnet: params.data.thisCameFromDotNET // example of data coming from dotnet, in HomeController
+      someData: "Transfer this to the client on the window.TRANSFER_CACHE {} object"
     });
 
     return ({

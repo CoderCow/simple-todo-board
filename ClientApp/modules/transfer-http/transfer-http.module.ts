@@ -7,5 +7,4 @@ import { TransferHttp } from "./transfer-http";
     TransferHttp
   ]
 })
-export class TransferHttpModule {
-}
+export class TransferHttpModule {}

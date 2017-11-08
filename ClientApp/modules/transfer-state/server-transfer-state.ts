@@ -33,6 +33,4 @@ export class ServerTransferState extends TransferState {
       console.error(e);
     }
   }
-
-
 }

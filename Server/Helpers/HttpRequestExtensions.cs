@@ -19,7 +19,7 @@ namespace SimpleTodoList.Server.Helpers {
         Headers = request.Headers,
         Host = request.Host
       };
-      
+
       return requestSimplified;
     }
 
@@ -32,10 +32,8 @@ namespace SimpleTodoList.Server.Helpers {
       string unencodedPathAndQuery = requestFeature.RawTarget;
       var unencodedAbsoluteUrl = $"{request.Scheme}://{request.Host}{unencodedPathAndQuery}";
 
-      // By default we're passing down Cookies, Headers, Host from the Request object here
       var transferData = new TransferData {
-        Request = request.AbstractRequestInfo(),
-        ThisCameFromDotNet = "Hi Angular it's asp.net :)"
+        Request = request.AbstractRequestInfo()
       };
       // TODO: Add more customData here, add it to the TransferData class
 

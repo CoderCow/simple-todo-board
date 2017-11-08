@@ -11,7 +11,6 @@ import "rxjs/add/observable/fromPromise";
 
 @Injectable()
 export class TransferHttp {
-
   private isServer = isPlatformServer(this.platformId);
 
   constructor(

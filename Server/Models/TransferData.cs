@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 namespace SimpleTodoList.Server.Models {
   public class TransferData {
     public dynamic Request { get; set; }
-
-    // Your data here ?
-    public object ThisCameFromDotNet { get; set; }
   }
 }

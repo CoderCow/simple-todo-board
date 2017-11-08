@@ -7,6 +7,4 @@ import { TransferState } from "./transfer-state";
     { provide: TransferState, useClass: ServerTransferState }
   ]
 })
-export class ServerTransferStateModule {
-
-}
+export class ServerTransferStateModule {}

@@ -6,21 +6,10 @@ import { FormsModule } from "@angular/forms";
 
 import { Ng2BootstrapModule } from "ngx-bootstrap";
 
-// i18n support
-import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
 import { HomeComponent } from "./containers/home/home.component";
-import { UsersComponent } from "./containers/users/users.component";
-import { UserDetailComponent } from "./components/user-detail/user-detail.component";
-import { CounterComponent } from "./containers/counter/counter.component";
-// import { ChatComponent } from './containers/chat/chat.component';
-import { NotFoundComponent } from "./containers/not-found/not-found.component";
-import { NgxBootstrapComponent } from "./containers/ngx-bootstrap-demo/ngx-bootstrap.component";
 
-import { UserService } from "./shared/user.service";
 // import { ConnectionResolver } from './shared/route.resolver';
 import { ORIGIN_URL } from "./shared/constants/baseurl.constants";
 import { TransferHttpModule } from "../modules/transfer-http/transfer-http.module";
@@ -114,26 +103,11 @@ import { Autosize } from 'angular2-autosize';
 import { DndModule } from 'ng2-dnd';
 import { CofirmDeleteDialogComponent } from "./components/todo-group/cofirm-delete-dialog/cofirm-delete-dialog.component";
 
-export function createTranslateLoader(http: Http, baseHref) {
-  // Temporary Azure hack
-  if (baseHref === null && typeof window !== "undefined") {
-    baseHref = window.location.origin;
-  }
-  // i18n files are in `wwwroot/assets/`
-  return new TranslateHttpLoader(http, `${baseHref}/assets/i18n/`, ".json");
-}
-
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    CounterComponent,
-    UsersComponent,
-    UserDetailComponent,
     HomeComponent,
-    // ChatComponent,
-    NotFoundComponent,
-    NgxBootstrapComponent,
     TodoGroupComponent,
     TodoItemComponent,
     CofirmDeleteDialogComponent,
@@ -150,14 +124,6 @@ export function createTranslateLoader(http: Http, baseHref) {
     MaterialModule,
     DndModule.forRoot(),
 
-    // i18n support
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [Http, [ORIGIN_URL]]
-      }
-    }),
 
     // App Routing
     RouterModule.forRoot([
@@ -174,39 +140,6 @@ export function createTranslateLoader(http: Http, baseHref) {
             title: "Homepage"
           }
         },
-        {
-          path: "counter",
-          component: CounterComponent,
-
-          data: {
-            title: "Counter"
-          }
-        },
-        {
-          path: "users",
-          component: UsersComponent,
-
-          data: {
-            title: "Users REST example"
-          }
-        },
-        {
-          path: "ngx-bootstrap",
-          component: NgxBootstrapComponent,
-
-          data: {
-            title: "Ngx-bootstrap demo!!"
-          }
-        },
-        { path: "lazy", loadChildren: "./containers/lazy/lazy.module#LazyModule" },
-        {
-          path: "**",
-
-          component: NotFoundComponent,
-          data: {
-            title: "404 - Not found"
-          }
-        }
       ],
       {
         // Router options
@@ -216,9 +149,7 @@ export function createTranslateLoader(http: Http, baseHref) {
       })
   ],
   providers: [
-    UserService,
     // ConnectionResolver,
-    TranslateModule
   ],
   entryComponents: [
     CofirmDeleteDialogComponent

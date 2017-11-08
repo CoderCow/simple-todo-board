@@ -14,7 +14,7 @@ import { ServerPrebootModule } from "preboot/server";
   bootstrap: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({
-      appId: "my-app-id" // make sure this matches with your Browser NgModule
+      appId: "my-todo-app" // make sure this matches with your Browser NgModule
     }),
     ServerModule,
     ServerPrebootModule.recordEvents({ appRoot: "app" }),

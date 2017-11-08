@@ -4,8 +4,6 @@ import { Title, DOCUMENT, MetaDefinition } from "@angular/platform-browser";
 import { Subscription } from "rxjs/Subscription";
 import { isPlatformServer } from "@angular/common";
 
-// i18n support
-import { TranslateService } from "@ngx-translate/core";
 import { REQUEST } from "./shared/constants/request";
 
 @Component({
@@ -15,10 +13,8 @@ import { REQUEST } from "./shared/constants/request";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
-  // This will go at the END of your title for example "Home - Angular Universal..." <-- after the dash (-)
-  private endPageTitle = "Angular Universal and ASP.NET Core Starter";
-  // If no Title is provided, we'll use a default one before the dash(-)
-  private defaultPageTitle = "My App";
+  private defaultPageTitle = "My Todo Board";
+  private endPageTitle = this.defaultPageTitle;
 
   private routerSub$: Subscription;
 
@@ -26,19 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private title: Title,
-    public translate: TranslateService,
     @Inject(REQUEST) private request
-  ) {
-    // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang("en");
-
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
-    translate.use("en");
-
-    console.log(`What's our REQUEST Object look like?`);
-    console.log(`The Request object only really exists on the Server, but on the Browser we can at least see Cookies`);
-    console.log(this.request);
-  }
+  ) {}
 
   public ngOnInit() {
     // Change "Title" on every navigationEnd event

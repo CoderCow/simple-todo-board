@@ -24,7 +24,7 @@ export function getRequest() {
   bootstrap: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({
-      appId: "my-app-id" // make sure this matches with your Server NgModule
+      appId: "my-todo-app" // make sure this matches with your Server NgModule
     }),
     BrowserPrebootModule.replayEvents(),
     BrowserAnimationsModule,
