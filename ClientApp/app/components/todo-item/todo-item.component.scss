@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+
+mat-card {
+  background: var(--cardBgColor);
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+mat-card-actions {
+  padding: 0;
+}
+
+.inline-edit {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: 0;
+}
+
+.todo-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: text;
+}
+
+.todo-description {
+  font-size: 1em;
+  cursor: text;
+}
+
+textarea.todo-description {
+  display: block;
+  resize: none;
+  margin-top: 21px;
+}
+
+:host(.dnd-sortable-drag) mat-card {
+  border: 2px dashed rgba(0, 0, 0, .6);
+}

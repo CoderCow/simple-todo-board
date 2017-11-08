@@ -1,0 +1,21 @@
+<div class="groupbox-wrapper">
+  <button *ngIf="allowAdd" mat-fab class="groupbox-edge-button" (click)="addItem()">+</button>
+  <div class="groupbox-title">
+     {{group.title}}
+  </div>
+  <div
+    class="groupbox-body"
+    dnd-sortable-container
+    [sortableData]="group.todos"
+    [ngClass]="{'done-cards': containsDoneCards}"
+  >
+    <todo-item
+      *ngFor="let todoItem of group.todos; let i = index"
+      [todo]="todoItem"
+      dnd-sortable
+      [sortableIndex]="i"
+      [dragEnabled]="!todoItem.isBeingEdited"
+      (deleteClicked)="deleteItem(todoItem)"
+    ></todo-item>
+  </div>
+</div>

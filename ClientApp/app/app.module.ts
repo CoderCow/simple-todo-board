@@ -25,6 +25,9 @@ import { UserService } from "./shared/user.service";
 import { ORIGIN_URL } from "./shared/constants/baseurl.constants";
 import { TransferHttpModule } from "../modules/transfer-http/transfer-http.module";
 
+// https://github.com/angular/flex-layout/wiki/Fast-Starts
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 // material design
 import { BrowserModule } from '@angular/platform-browser';
 import {
@@ -61,6 +64,8 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { TodoGroupComponent } from './components/todo-group/todo-group.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   exports: [
@@ -100,6 +105,15 @@ import { CdkTableModule } from '@angular/cdk/table';
 })
 export class MaterialModule {}
 
+// autoresize for textareas
+// https://github.com/stevepapa/angular2-autosize
+import { Autosize } from 'angular2-autosize';
+
+// drag and drop
+// https://github.com/akserg/ng2-dnd
+import { DndModule } from 'ng2-dnd';
+import { CofirmDeleteDialogComponent } from "./components/todo-group/cofirm-delete-dialog/cofirm-delete-dialog.component";
+
 export function createTranslateLoader(http: Http, baseHref) {
   // Temporary Azure hack
   if (baseHref === null && typeof window !== "undefined") {
@@ -119,7 +133,11 @@ export function createTranslateLoader(http: Http, baseHref) {
     HomeComponent,
     // ChatComponent,
     NotFoundComponent,
-    NgxBootstrapComponent
+    NgxBootstrapComponent,
+    TodoGroupComponent,
+    TodoItemComponent,
+    CofirmDeleteDialogComponent,
+    Autosize,
   ],
   imports: [
     BrowserModule,
@@ -128,7 +146,9 @@ export function createTranslateLoader(http: Http, baseHref) {
     FormsModule,
     Ng2BootstrapModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
     TransferHttpModule, // Our Http TransferData method
+    FlexLayoutModule,
     MaterialModule,
+    DndModule.forRoot(),
 
     // i18n support
     TranslateModule.forRoot({
@@ -199,6 +219,9 @@ export function createTranslateLoader(http: Http, baseHref) {
     UserService,
     // ConnectionResolver,
     TranslateModule
+  ],
+  entryComponents: [
+    CofirmDeleteDialogComponent
   ]
 })
 export class AppModuleShared {}

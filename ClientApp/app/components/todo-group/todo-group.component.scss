@@ -1,0 +1,32 @@
+:host {
+  --cardBgColor: #FFFFFF;
+}
+
+.done-cards {
+  --cardBgColor: #CCFFCC;
+}
+
+.groupbox-wrapper {
+  margin: 4px;
+  background: rgba(0, 0, 0, .03);
+  position: relative;
+}
+
+.groupbox-title {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: rgba(0, 0, 0, .54);
+}
+
+.groupbox-body {
+  padding: 30px;
+  min-height: 600px;
+  cursor: default !important; // need important to override ng2-dnd's cursor setting on the element
+}
+
+.groupbox-edge-button {
+  position: absolute;
+  right: 20px;
+  top: -15px;
+}
