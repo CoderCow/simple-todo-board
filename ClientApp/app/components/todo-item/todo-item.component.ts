@@ -21,8 +21,6 @@ export class TodoItemComponent {
   @Input()
   public editingTodo: ITodoItem;
 
-  public isEditMode: boolean = false;
-
   @Output()
   public deleteClicked = new EventEmitter();
 
@@ -39,11 +37,11 @@ export class TodoItemComponent {
   }
 
   public beginEdit(editFocusTargetQuerySelector: string = "input.todo-title") {
-    if (this.isEditMode)
+    if (this.todo.isBeingEdited)
       return;
 
     this.editingTodo = Object.assign({}, this.todo);
-    this.isEditMode = true;
+    this.todo.isBeingEdited = true;
     this.editFocusTargetQuerySelector = editFocusTargetQuerySelector;
   }
 
@@ -52,7 +50,7 @@ export class TodoItemComponent {
       Object.assign(this.todo, this.editingTodo);
     }
 
-    this.isEditMode = false;
+    this.todo.isBeingEdited = false;
   }
   // endregion
 

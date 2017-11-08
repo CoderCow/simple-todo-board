@@ -13,7 +13,8 @@ export class TodoGroupComponent {
   private static newItemTemplate: Readonly<ITodoItem> = Object.freeze({
     id: -1,
     title: 'New Task',
-    description: 'Add a task description here.'
+    description: 'Add a task description here.',
+    isBeingEdited: false
   });
 
   @Input()

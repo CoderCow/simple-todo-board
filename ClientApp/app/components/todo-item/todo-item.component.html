@@ -4,14 +4,27 @@
       <h3 class="todo-title">
         {{todo.title}}
       </h3>
-      <p class="todo-description" [innerHTML]="todoDescriptionHtml" (click)="beginEdit('textarea.todo-description')"></p>
+      <p
+        class="todo-description"
+        [innerHTML]="todoDescriptionHtml"
+        (click)="beginEdit('textarea.todo-description')"
+      ></p>
     </mat-card-content>
   </ng-template>
 
   <ng-template #editMode>
     <mat-card-content #editCardContentElement>
-      <input [(ngModel)]="editingTodo.title" class="todo-title inline-edit">
-      <textarea [(ngModel)]="editingTodo.description" class="todo-description inline-edit" rows="1" cols="10" autosize></textarea>
+      <input
+        [(ngModel)]="editingTodo.title"
+        class="todo-title inline-edit"
+      >
+      <textarea
+        [(ngModel)]="editingTodo.description"
+        class="todo-description inline-edit"
+        rows="1"
+        cols="10"
+        autosize
+      ></textarea>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-icon-button (click)="endEdit(true)" title="save changes">
@@ -26,5 +39,5 @@
     </mat-card-actions>
   </ng-template>
 
-  <ng-container *ngIf="isEditMode; then editMode else normalMode"></ng-container>
+  <ng-container *ngIf="todo.isBeingEdited; then editMode else normalMode"></ng-container>
 </mat-card>
