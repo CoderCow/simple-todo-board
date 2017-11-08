@@ -263,3 +263,6 @@ coverage/
 
 .DS_Store
 package-lock.json
+
+# Rider IDE files
+.idea
