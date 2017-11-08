@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ITodoGroup } from '../../models/ITodoGroup';
 import { ITodoItem } from "../../models/ITodoItem";
+import { CofirmDeleteDialogComponent } from "./cofirm-delete-dialog/cofirm-delete-dialog.component";
+import { MatDialog, MatDialogRef } from "@angular/material";
 
 @Component({
   selector: 'todo-group',
@@ -16,12 +18,16 @@ export class TodoGroupComponent {
 
   @Input()
   public group: ITodoGroup;
+
   @Input()
   public allowAdd: boolean = false;
+
   @Input()
   public containsDoneCards: boolean = false;
 
-  constructor() {}
+  constructor(
+    public confirmDeleteDialog: MatDialog
+  ) {}
 
   public addItem(item: ITodoItem = null) {
     if (!item)
@@ -30,9 +36,26 @@ export class TodoGroupComponent {
     this.group.todos.splice(0, 0, item);
   }
 
-  public deleteItem(item: ITodoItem) {
-    let itemIndex = this.group.todos.indexOf(item);
-    if (itemIndex > -1)
+  // region item deleting
+  public async deleteItem(todoItem: ITodoItem): Promise<any> {
+    let itemIndex = this.group.todos.indexOf(todoItem);
+    if (itemIndex === -1) {
+      console.error(`item with index ${itemIndex} not found!`);
+      return;
+    }
+
+    if (await this.confirmDelete(todoItem))
       this.group.todos.splice(itemIndex, 1);
   }
+
+  private async confirmDelete(todoItem: ITodoItem): Promise<boolean> {
+    let dialogRef: MatDialogRef<CofirmDeleteDialogComponent>;
+    dialogRef = this.confirmDeleteDialog.open(CofirmDeleteDialogComponent, {
+      data: todoItem
+    });
+
+    const result = await dialogRef.afterClosed().toPromise();
+    return result === "true";
+  }
+  // endregion
 }

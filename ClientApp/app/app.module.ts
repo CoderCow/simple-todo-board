@@ -111,7 +111,8 @@ import { Autosize } from 'angular2-autosize';
 
 // drag and drop
 // https://github.com/akserg/ng2-dnd
-import {DndModule} from 'ng2-dnd';
+import { DndModule } from 'ng2-dnd';
+import { CofirmDeleteDialogComponent } from "./components/todo-group/cofirm-delete-dialog/cofirm-delete-dialog.component";
 
 export function createTranslateLoader(http: Http, baseHref) {
   // Temporary Azure hack
@@ -135,6 +136,7 @@ export function createTranslateLoader(http: Http, baseHref) {
     NgxBootstrapComponent,
     TodoGroupComponent,
     TodoItemComponent,
+    CofirmDeleteDialogComponent,
     Autosize,
   ],
   imports: [
@@ -217,6 +219,9 @@ export function createTranslateLoader(http: Http, baseHref) {
     UserService,
     // ConnectionResolver,
     TranslateModule
+  ],
+  entryComponents: [
+    CofirmDeleteDialogComponent
   ]
 })
 export class AppModuleShared {}
