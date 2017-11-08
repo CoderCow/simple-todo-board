@@ -12,8 +12,8 @@ import { MatDialog, MatDialogRef } from "@angular/material";
 export class TodoGroupComponent {
   private static newItemTemplate: Readonly<ITodoItem> = Object.freeze({
     id: -1,
-    title: 'Todo',
-    description: 'Fill me'
+    title: 'New Task',
+    description: 'Add a task description here.'
   });
 
   @Input()
