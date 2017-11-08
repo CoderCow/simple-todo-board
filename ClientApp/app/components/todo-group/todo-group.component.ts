@@ -37,7 +37,7 @@ export class TodoGroupComponent {
     this.group.todos.splice(0, 0, item);
   }
 
-  // region item deleting
+  // region Item Deleting
   public async deleteItem(todoItem: ITodoItem): Promise<any> {
     let itemIndex = this.group.todos.indexOf(todoItem);
     if (itemIndex === -1) {
