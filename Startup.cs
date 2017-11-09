@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -96,6 +97,21 @@ namespace SimpleTodoList {
         });
         app.UseExceptionHandler("/Home/Error");
       }
+    }
+
+    // for the EF tooling
+    // see: https://wildermuth.com/2017/07/06/Program-cs-in-ASP-NET-Core-2-0
+    // seealso: https://github.com/aspnet/EntityFrameworkCore/issues/9415
+    public static IWebHost BuildWebHost(string[] args) {
+      return WebHost.CreateDefaultBuilder()
+        .ConfigureAppConfiguration((ctx, cfg) => {
+          cfg.SetBasePath(Directory.GetCurrentDirectory())
+            .AddEnvironmentVariables();
+        })
+        .ConfigureLogging((ctx, logging) => {}) // No logging
+        .UseStartup<Startup>()
+        .UseSetting("DesignTime", "true")
+        .Build();
     }
   }
 }

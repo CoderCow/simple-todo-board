@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using SimpleTodoList.Models;
+using SimpleTodoList.Server.Models.Data;
 
 namespace SimpleTodoList.Data {
-  public class SpaDbContext : DbContext {
-    //List of DB Models - Add your DB models here
-    public DbSet<User> User { get; set; }
+  public class SpaDbContext: DbContext {
+    public DbSet<TodoGroup> TodoGroups { get; set; }
+    public DbSet<TodoItem> TodoItems { get; set; }
 
     public SpaDbContext(DbContextOptions<SpaDbContext> options): base(options) {
       this.Database.EnsureCreated();
