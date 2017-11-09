@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SimpleTodoList.Server.Models.Data;
+using SimpleTodoList.Models.Data;
 
 namespace SimpleTodoList.Data {
   public class SpaDbContext: DbContext {

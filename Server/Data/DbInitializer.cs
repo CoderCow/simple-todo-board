@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleTodoList;
 using SimpleTodoList.Models;
-using SimpleTodoList.Server.Models.Data;
+using SimpleTodoList.Models.Data;
 
 namespace SimpleTodoList.Data {
   public static class DbInitializer {

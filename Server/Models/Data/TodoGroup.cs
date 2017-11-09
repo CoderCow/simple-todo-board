@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimpleTodoList.Server.Models.Data {
+namespace SimpleTodoList.Models.Data {
   public class TodoGroup {
     [Key]
     public int Id { get; set; }
