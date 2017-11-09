@@ -29,6 +29,7 @@ namespace SimpleTodoList {
         .AddJsonFile("appsettings.json", true, true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
         .AddEnvironmentVariables();
+
       Configuration = builder.Build();
     }
 
@@ -48,7 +49,7 @@ namespace SimpleTodoList {
 
       // Register the Swagger generator, defining one or more Swagger documents
       services.AddSwaggerGen(c => {
-        c.SwaggerDoc("v1", new Info {Title = "Angular 4.0 Universal & ASP.NET Core advanced starter-kit web API", Version = "v1"});
+        c.SwaggerDoc("v1", new Info {Title = "My Todo List API", Version = "v1"});
       });
     }
 
@@ -68,10 +69,9 @@ namespace SimpleTodoList {
           HotModuleReplacementEndpoint = "/dist/__webpack_hmr"
         });
         app.UseSwagger();
-        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Todo List API"); });
 
         // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
-
         app.MapWhen(x => !x.Request.Path.Value.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase), builder => {
           builder.UseMvc(routes => {
             routes.MapSpaFallbackRoute(
