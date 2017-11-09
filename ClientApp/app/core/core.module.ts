@@ -5,7 +5,7 @@ import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 
 // import { ConnectionResolver } from './shared/route.resolver';
-import { ORIGIN_URL } from "../shared/constants/baseurl.constants";
+import { ORIGIN_URL } from "../core/constants/baseurl.constants";
 import { TransferHttpModule } from "../../modules/transfer-http/transfer-http.module";
 
 // https://github.com/angular/flex-layout/wiki/Fast-Starts

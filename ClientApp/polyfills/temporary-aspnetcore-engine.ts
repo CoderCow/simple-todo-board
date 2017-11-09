@@ -8,8 +8,8 @@ import { platformServer, platformDynamicServer, PlatformState, INITIAL_CONFIG, r
 import { ResourceLoader } from "@angular/compiler";
 import * as fs from "fs";
 
-import { REQUEST } from "../app/shared/constants/request";
-import { ORIGIN_URL } from "../app/shared/constants/baseurl.constants";
+import { REQUEST } from "../app/core/constants/request";
+import { ORIGIN_URL } from "../app/core/constants/baseurl.constants";
 
 export function createTransferScript(transferData: Object): string {
   return `<script>window['TRANSFER_CACHE'] = ${JSON.stringify(transferData)};</script>`;
