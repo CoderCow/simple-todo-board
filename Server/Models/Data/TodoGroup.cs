@@ -10,6 +10,9 @@ namespace SimpleTodoList.Models.Data {
     [StringLength(30, MinimumLength = 1)]
     public string Title { get; set; }
 
+    [Required]
+    public int UserOrder { get; set; }
+
     public ICollection<TodoItem> Todos { get; set; }
   }
 }
