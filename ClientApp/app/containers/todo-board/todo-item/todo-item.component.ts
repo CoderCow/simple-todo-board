@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, SecurityContext, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ITodoItem } from '../../models/ITodoItem';
+import { ITodoItem } from '../../../models/ITodoItem';
 import { SafeHtml } from "@angular/platform-browser";
 
 @Component({

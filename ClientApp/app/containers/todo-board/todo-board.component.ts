@@ -26,9 +26,9 @@ var exampleTodoItems: ITodoItem[] = [
 
 @Component({
   selector: "app-home",
-  templateUrl: "./home.component.html"
+  templateUrl: "./todo-board.component.html"
 })
-export class HomeComponent implements OnInit {
+export class TodoBoardComponent implements OnInit {
   public todoGroup: ITodoGroup = { id: 0, title: "Todo", todos: exampleTodoItems };
   public doingGroup: ITodoGroup = { id: 1, title: "Doing", todos: [] };
   public doneGroup: ITodoGroup = { id: 2, title: "Done", todos: [] };

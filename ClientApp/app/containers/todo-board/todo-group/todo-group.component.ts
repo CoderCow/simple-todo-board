@@ -1,6 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
-import { ITodoGroup } from '../../models/ITodoGroup';
-import { ITodoItem } from "../../models/ITodoItem";
+import { ITodoGroup } from '../../../models/ITodoGroup';
+import { ITodoItem } from "../../../models/ITodoItem";
 import { CofirmDeleteDialogComponent } from "./cofirm-delete-dialog/cofirm-delete-dialog.component";
 import { MatDialog, MatDialogRef } from "@angular/material";
 
