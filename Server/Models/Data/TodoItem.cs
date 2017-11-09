@@ -24,6 +24,7 @@ namespace SimpleTodoList.Models.Data {
     public DateTime TimeLastEdited { get; set; }
 
     [Required]
+    [Range(0, Int32.MaxValue)]
     public int UserOrder { get; set; }
   }
 }
