@@ -4,6 +4,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -42,7 +43,7 @@ namespace SimpleTodoList {
       services.AddMvc();
       services.AddNodeServices();
 
-      var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder {DataSource = "spa.db"};
+      var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "spa.db" };
       var connectionString = connectionStringBuilder.ToString();
 
       services.AddDbContext<SpaDbContext>(options =>
@@ -52,6 +53,7 @@ namespace SimpleTodoList {
       services.AddSwaggerGen(c => {
         c.SwaggerDoc("v1", new Info {Title = "My Todo List API", Version = "v1"});
       });
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
