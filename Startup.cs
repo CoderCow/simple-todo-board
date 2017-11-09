@@ -1,8 +1,10 @@
 using System;
 using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,6 +31,7 @@ namespace SimpleTodoList {
         .AddJsonFile("appsettings.json", true, true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
         .AddEnvironmentVariables();
+
       Configuration = builder.Build();
     }
 
@@ -40,7 +43,7 @@ namespace SimpleTodoList {
       services.AddMvc();
       services.AddNodeServices();
 
-      var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder {DataSource = "spa.db"};
+      var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "spa.db" };
       var connectionString = connectionStringBuilder.ToString();
 
       services.AddDbContext<SpaDbContext>(options =>
@@ -48,8 +51,9 @@ namespace SimpleTodoList {
 
       // Register the Swagger generator, defining one or more Swagger documents
       services.AddSwaggerGen(c => {
-        c.SwaggerDoc("v1", new Info {Title = "Angular 4.0 Universal & ASP.NET Core advanced starter-kit web API", Version = "v1"});
+        c.SwaggerDoc("v1", new Info {Title = "My Todo List API", Version = "v1"});
       });
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,10 +72,9 @@ namespace SimpleTodoList {
           HotModuleReplacementEndpoint = "/dist/__webpack_hmr"
         });
         app.UseSwagger();
-        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Todo List API"); });
 
         // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
-
         app.MapWhen(x => !x.Request.Path.Value.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase), builder => {
           builder.UseMvc(routes => {
             routes.MapSpaFallbackRoute(
@@ -96,6 +99,21 @@ namespace SimpleTodoList {
         });
         app.UseExceptionHandler("/Home/Error");
       }
+    }
+
+    // for the EF tooling
+    // see: https://wildermuth.com/2017/07/06/Program-cs-in-ASP-NET-Core-2-0
+    // seealso: https://github.com/aspnet/EntityFrameworkCore/issues/9415
+    public static IWebHost BuildWebHost(string[] args) {
+      return WebHost.CreateDefaultBuilder()
+        .ConfigureAppConfiguration((ctx, cfg) => {
+          cfg.SetBasePath(Directory.GetCurrentDirectory())
+            .AddEnvironmentVariables();
+        })
+        .ConfigureLogging((ctx, logging) => {}) // No logging
+        .UseStartup<Startup>()
+        .UseSetting("DesignTime", "true")
+        .Build();
     }
   }
 }
