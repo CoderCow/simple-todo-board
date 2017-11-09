@@ -1,3 +1,4 @@
+import { ITodoItemViewModel } from './../../../models/ITodoItemViewModel';
 import { Component, ElementRef, EventEmitter, Input, Output, SecurityContext, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ITodoItem } from '../../../models/ITodoItem';
@@ -10,16 +11,16 @@ import { SafeHtml } from "@angular/platform-browser";
 })
 export class TodoItemComponent {
   @Input()
-  public todo: ITodoItem;
+  public todo: ITodoItemViewModel;
 
   @Input()
   public get todoDescriptionHtml(): SafeHtml {
-    let withBreaks = TodoItemComponent.newlineToBr(this.todo.description);
+    let withBreaks = TodoItemComponent.newlineToBr(this.todo.descriptionHtml);
     return this.domSanitizer.sanitize(SecurityContext.HTML, withBreaks);
   }
 
   @Input()
-  public editingTodo: ITodoItem;
+  public editingTodo: ITodoItemViewModel;
 
   @Output()
   public deleteClicked = new EventEmitter();

@@ -1,3 +1,4 @@
+import { ITodoItemViewModel } from './../../../models/ITodoItemViewModel';
 import { Component, Inject, Input } from '@angular/core';
 import { ITodoGroup } from '../../../models/ITodoGroup';
 import { ITodoItem } from "../../../models/ITodoItem";
@@ -10,10 +11,12 @@ import { MatDialog, MatDialogRef } from "@angular/material";
   styleUrls: ['./todo-group.component.scss']
 })
 export class TodoGroupComponent {
-  private static newItemTemplate: Readonly<ITodoItem> = Object.freeze({
+  private static newItemTemplate: Readonly<ITodoItemViewModel> = Object.freeze({
     id: -1,
+    groupId: -1,
     title: 'New Task',
-    description: 'Add a task description here.',
+    descriptionHtml: 'Add a task description here.',
+    userOrder: 0,
     isBeingEdited: false
   });
 
@@ -27,18 +30,20 @@ export class TodoGroupComponent {
   public containsDoneCards: boolean = false;
 
   constructor(
-    public confirmDeleteDialog: MatDialog
+    public confirmDeleteDialog: MatDialog,
+    public todoItemService: TodoItemService
   ) {}
 
-  public addItem(item: ITodoItem = undefined) {
+  public addItem(item: ITodoItemViewModel = undefined) {
     if (!item)
       item = Object.assign({}, TodoGroupComponent.newItemTemplate);
 
     this.group.todos.splice(0, 0, item);
+    item.groupId = this.group.id;
   }
 
   // region Item Deleting
-  public async deleteItem(todoItem: ITodoItem): Promise<any> {
+  public async deleteItem(todoItem: ITodoItemViewModel): Promise<any> {
     let itemIndex = this.group.todos.indexOf(todoItem);
     if (itemIndex === -1) {
       console.error(`item with index ${itemIndex} not found!`);
@@ -49,7 +54,7 @@ export class TodoGroupComponent {
       this.group.todos.splice(itemIndex, 1);
   }
 
-  private async confirmDelete(todoItem: ITodoItem): Promise<boolean> {
+  private async confirmDelete(todoItem: ITodoItemViewModel): Promise<boolean> {
     let dialogRef: MatDialogRef<CofirmDeleteDialogComponent>;
     dialogRef = this.confirmDeleteDialog.open(CofirmDeleteDialogComponent, {
       data: todoItem
