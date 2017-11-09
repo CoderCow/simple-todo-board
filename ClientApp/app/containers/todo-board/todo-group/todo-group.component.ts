@@ -30,7 +30,7 @@ export class TodoGroupComponent {
     public confirmDeleteDialog: MatDialog
   ) {}
 
-  public addItem(item: ITodoItem = null) {
+  public addItem(item: ITodoItem = undefined) {
     if (!item)
       item = Object.assign({}, TodoGroupComponent.newItemTemplate);
 
