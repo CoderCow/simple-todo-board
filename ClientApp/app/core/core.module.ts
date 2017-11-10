@@ -2,6 +2,7 @@
 import { throwIfAlreadyLoaded } from "./module-import-guard";
 import { CommonModule } from "@angular/common";
 import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 
 // import { ConnectionResolver } from './shared/route.resolver';
@@ -91,6 +92,9 @@ import { Autosize } from 'angular2-autosize';
 
 import { NavMenuComponent } from "./navmenu/navmenu.component";
 
+import { TodoItemService } from './services/todo-item.service';
+import { TodoGroupService } from './services/todo-group.service';
+
 @NgModule({
   declarations: [
     NavMenuComponent,
@@ -100,22 +104,26 @@ import { NavMenuComponent } from "./navmenu/navmenu.component";
     CommonModule,
 
     HttpModule,
+    HttpClientModule,
     FormsModule,
-    TransferHttpModule, // Our Http TransferData method
+    TransferHttpModule,
     FlexLayoutModule,
     MaterialModule,
   ],
   exports: [
     NavMenuComponent,
     Autosize,
+
     HttpModule,
+    HttpClientModule,
     FormsModule,
-    TransferHttpModule, // Our Http TransferData method
+    TransferHttpModule,
     FlexLayoutModule,
     MaterialModule,
   ],
   providers: [
-
+    TodoGroupService,
+    TodoItemService
   ]
 })
 export class CoreModule {
