@@ -1,5 +1,9 @@
 <div fxFill fxLayout="row" fxLayoutGap="20px">
-  <todo-group [group]="todoGroup" allowAdd="true" fxFlex="33.33"></todo-group>
-  <todo-group [group]="doingGroup" fxFlex="33.33"></todo-group>
-  <todo-group [group]="doneGroup" fxFlex="33.33" containsDoneCards="true"></todo-group>
+  <todo-group
+    *ngFor="let todoGroup of todoGroups; let i = index"
+    [group]="todoGroup"
+    [allowAdd]="i == 0"
+    [containsDoneCards]="i == todoGroups.length - 1"
+    fxFlex="33.33">
+  </todo-group>
 </div>
