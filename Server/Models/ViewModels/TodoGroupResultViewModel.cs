@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using SimpleTodoList.Models.Data;
+using SimpleTodoBoard.Models.Data;
 
-namespace SimpleTodoList.Models {
+namespace SimpleTodoBoard.Models {
   public class TodoGroupResultViewModel {
     public int Id { get; set; }
     public string Title { get; set; }

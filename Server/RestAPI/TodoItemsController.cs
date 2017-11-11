@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SimpleTodoList.Data;
-using SimpleTodoList.Models.Data;
-using SimpleTodoList.Models;
+using SimpleTodoBoard.Data;
+using SimpleTodoBoard.Models.Data;
+using SimpleTodoBoard.Models;
 
-namespace SimpleTodoList.RestAPI {
+namespace SimpleTodoBoard.RestAPI {
   [Route("api/v1/todo-items")]
   public class TodoItemsController: Controller {
     private readonly SpaDbContext context;

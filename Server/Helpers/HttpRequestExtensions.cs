@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using SimpleTodoList.Server.Models;
+using SimpleTodoBoard.Server.Models;
 
-namespace SimpleTodoList.Server.Helpers {
+namespace SimpleTodoBoard.Server.Helpers {
   public static class HttpRequestExtensions {
     public static SimpleRequest AbstractRequestInfo(this HttpRequest request) {
       var requestSimplified = new SimpleRequest {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using SimpleTodoList.Models.Data;
+using SimpleTodoBoard.Models.Data;
 
-namespace SimpleTodoList.Data {
+namespace SimpleTodoBoard.Data {
   public class SpaDbContext: DbContext {
     public DbSet<TodoGroup> TodoGroups { get; set; }
     public DbSet<TodoItem> TodoItems { get; set; }

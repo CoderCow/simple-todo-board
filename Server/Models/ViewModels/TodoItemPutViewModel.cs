@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimpleTodoList.Models {
+namespace SimpleTodoBoard.Models {
   public class TodoItemPutViewModel {
     public int? GroupId { get; set; }
 

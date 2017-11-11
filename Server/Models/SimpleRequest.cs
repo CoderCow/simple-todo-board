@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SimpleTodoList.Server.Models {
+namespace SimpleTodoBoard.Server.Models {
   public class SimpleRequest {
     public object Cookies { get; set; }
     public object Headers { get; set; }

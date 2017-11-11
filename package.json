@@ -1,5 +1,5 @@
 {
-  "name": "simple-todo-list",
+  "name": "simple-todo-board",
   "version": "1.0.0",
   "scripts": {
     "lint": "tslint -p tsconfig.json",

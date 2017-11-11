@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using SimpleTodoList.Models.Data;
+using SimpleTodoBoard.Models.Data;
 
-namespace SimpleTodoList.Models {
+namespace SimpleTodoBoard.Models {
   public class TodoItemResultViewModel {
     public int GroupId { get; set; }
     public int Id { get; set; }

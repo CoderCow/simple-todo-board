@@ -9,10 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using SimpleTodoList.Data;
+using SimpleTodoBoard.Data;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace SimpleTodoList {
+namespace SimpleTodoBoard {
   public class Startup {
     public static void Main(string[] args) {
       var host = new WebHostBuilder()

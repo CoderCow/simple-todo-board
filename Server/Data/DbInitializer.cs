@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleTodoList;
-using SimpleTodoList.Models;
-using SimpleTodoList.Models.Data;
+using SimpleTodoBoard;
+using SimpleTodoBoard.Models;
+using SimpleTodoBoard.Models.Data;
 
-namespace SimpleTodoList.Data {
+namespace SimpleTodoBoard.Data {
   public static class DbInitializer {
     public static void Initialize(SpaDbContext context) {
       context.Database.EnsureCreated();

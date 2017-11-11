@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimpleTodoList.Models.Data {
+namespace SimpleTodoBoard.Models.Data {
   public class TodoItem {
     [Key]
     public int Id { get; set; }

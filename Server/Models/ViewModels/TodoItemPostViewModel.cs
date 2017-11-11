@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using SimpleTodoList.Models.Data;
+using SimpleTodoBoard.Models.Data;
 
-namespace SimpleTodoList.Models {
+namespace SimpleTodoBoard.Models {
   public class TodoItemPostViewModel {
     [Required]
     public int GroupId { get; set; }
