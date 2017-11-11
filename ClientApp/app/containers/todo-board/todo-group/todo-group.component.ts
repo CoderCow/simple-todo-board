@@ -4,6 +4,7 @@ import { ITodoGroup } from '../../../models/ITodoGroup';
 import { ITodoItem } from "../../../models/ITodoItem";
 import { CofirmDeleteDialogComponent } from "./cofirm-delete-dialog/cofirm-delete-dialog.component";
 import { MatDialog, MatDialogRef } from "@angular/material";
+import { TodoItemService } from '../../../core/services/todo-item.service';
 
 @Component({
   selector: 'todo-group',
@@ -38,8 +39,12 @@ export class TodoGroupComponent {
     if (!item)
       item = Object.assign({}, TodoGroupComponent.newItemTemplate);
 
-    this.group.todos.splice(0, 0, item);
     item.groupId = this.group.id;
+
+    this.todoItemService.addItem(item).subscribe(addedItem => {
+      this.group.todos.forEach(i => i.userOrder++);
+      this.group.todos.splice(0, 0, addedItem);
+    });
   }
 
   // region Item Deleting
@@ -50,8 +55,14 @@ export class TodoGroupComponent {
       return;
     }
 
-    if (await this.confirmDelete(todoItem))
-      this.group.todos.splice(itemIndex, 1);
+    if (await this.confirmDelete(todoItem)) {
+      this.todoItemService.removeItem(todoItem.id).subscribe(o => {
+        for (let i = itemIndex + 1; i < this.group.todos.length; i++)
+          this.group.todos[i].userOrder--;
+
+        this.group.todos.splice(itemIndex, 1);
+      });
+    }
   }
 
   private async confirmDelete(todoItem: ITodoItemViewModel): Promise<boolean> {
@@ -64,4 +75,51 @@ export class TodoGroupComponent {
     return result === "true";
   }
   // endregion
+
+  public async itemDragEnd(oldIndex: number, todoItem: ITodoItemViewModel, newIndex: number) {
+    let nextSibling = this.group.todos[newIndex + 1];
+    let prevSibling = this.group.todos[newIndex - 1];
+
+    let newUserOrder;
+    let hasGroupChanged = todoItem.groupId !== this.group.id;
+    if (hasGroupChanged) {
+      for (let i = newIndex + 1; i < this.group.todos.length; i++)
+        this.group.todos[i].userOrder++;
+
+      if (nextSibling)
+        newUserOrder = nextSibling.userOrder - 1;
+      else if (prevSibling)
+        newUserOrder = prevSibling.userOrder + 1;
+      else
+        newUserOrder = 0;
+    } else if (newIndex < oldIndex) { // item was moved up
+      for (let i = newIndex + 1; i <= oldIndex; i++)
+        this.group.todos[i].userOrder++;
+
+      let isFirstInGroup = newIndex === 0;
+      if (isFirstInGroup)
+        newUserOrder = 0;
+      else
+        newUserOrder = prevSibling.userOrder + 1;
+    } else if (newIndex > oldIndex) { // item was moved down
+      for (let i = oldIndex; i < newIndex; i++)
+        this.group.todos[i].userOrder--;
+
+      let isLastInGroup = newIndex === this.group.todos.length - 1;
+      if (isLastInGroup)
+        newUserOrder = prevSibling.userOrder + 1;
+      else
+        newUserOrder = nextSibling.userOrder - 1;
+    }
+    todoItem.userOrder = newUserOrder;
+
+    let itemUpdates = {
+      userOrder: newUserOrder,
+      groupId: this.group.id
+    };
+    // TODO: roll the move operation back if update fails
+    this.todoItemService.updateItem(todoItem.id, itemUpdates).subscribe(o => {
+      todoItem.groupId = this.group.id;
+    });
+  }
 }
