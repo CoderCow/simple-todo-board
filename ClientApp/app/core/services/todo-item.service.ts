@@ -16,18 +16,18 @@ export class TodoItemService {
   }
 
   public getItem(id: number): Observable<ITodoItem> {
-    return this.http.get<ITodoItem>(this.baseUrl + "/v1/todo-items/" + id);
+    return this.http.get<ITodoItem>(this.baseUrl + "/v1/todo-items/" + id).delay(1000);
   }
 
   public updateItem(id: number, itemUpdates: {}): Observable<Object> {
-    return this.http.put(this.baseUrl + "/v1/todo-items/" + id, itemUpdates);
+    return this.http.put(this.baseUrl + "/v1/todo-items/" + id, itemUpdates).delay(1000);
   }
 
   public addItem(item: ITodoItem): Observable<ITodoItem> {
-    return this.http.post<ITodoItem>(this.baseUrl + "/v1/todo-items", item);
+    return this.http.post<ITodoItem>(this.baseUrl + "/v1/todo-items", item).delay(1000);
   }
 
   public removeItem(id: number): Observable<Object> {
-    return this.http.delete(this.baseUrl + "/v1/todo-items/" + id);
+    return this.http.delete(this.baseUrl + "/v1/todo-items/" + id).delay(1000);
   }
 }
