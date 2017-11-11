@@ -1,10 +1,12 @@
 <loading-spinner *ngIf="isLoading" size="large"></loading-spinner>
-<div *ngIf="!isLoading" fxFill fxLayout="row" fxLayoutGap="20px">
-  <todo-group
-    *ngFor="let todoGroup of todoGroups; let i = index"
-    [group]="todoGroup"
-    [allowAdd]="i == 0"
-    [containsDoneCards]="i == todoGroups.length - 1"
-    fxFlex="33.33">
-  </todo-group>
+<div class="board-wrapper">
+  <div *ngIf="!isLoading" fxFill fxLayout="row" fxLayoutGap="20px">
+    <todo-group
+      *ngFor="let todoGroup of todoGroups; let i = index"
+      [group]="todoGroup"
+      [allowAdd]="i == 0"
+      [containsDoneCards]="i == todoGroups.length - 1"
+      fxFlex="33.33">
+    </todo-group>
+  </div>
 </div>
