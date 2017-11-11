@@ -1,6 +1,6 @@
 {
-  "name": "angular4-aspnetcore-universal",
-  "version": "1.0.0-rc3",
+  "name": "simple-todo-list",
+  "version": "1.0.0",
   "scripts": {
     "lint": "tslint -p tsconfig.json",
     "test": "npm run build:vendor && karma start ClientApp/test/karma.conf.js",
