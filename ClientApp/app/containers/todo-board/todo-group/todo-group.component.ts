@@ -18,7 +18,8 @@ export class TodoGroupComponent {
     title: 'New Task',
     descriptionHtml: 'Add a task description here.',
     userOrder: 0,
-    isBeingEdited: false
+    isBeingEdited: false,
+    isBusy: true
   });
 
   @Input()
@@ -35,16 +36,19 @@ export class TodoGroupComponent {
     public todoItemService: TodoItemService
   ) {}
 
-  public addItem(item: ITodoItemViewModel = undefined) {
+  public async addItem(item: ITodoItemViewModel = undefined) {
     if (!item)
       item = Object.assign({}, TodoGroupComponent.newItemTemplate);
 
     item.groupId = this.group.id;
 
-    this.todoItemService.addItem(item).subscribe(addedItem => {
-      this.group.todos.forEach(i => i.userOrder++);
-      this.group.todos.splice(0, 0, addedItem);
-    });
+    // TODO: rollback if adding fails
+    this.group.todos.forEach(i => i.userOrder++);
+    this.group.todos.splice(0, 0, item);
+
+    let addedItem: ITodoItem = await this.todoItemService.addItem(item).toPromise();
+    item.id = addedItem.id;
+    item.isBusy = false;
   }
 
   // region Item Deleting
@@ -56,12 +60,15 @@ export class TodoGroupComponent {
     }
 
     if (await this.confirmDelete(todoItem)) {
-      this.todoItemService.removeItem(todoItem.id).subscribe(o => {
-        for (let i = itemIndex + 1; i < this.group.todos.length; i++)
-          this.group.todos[i].userOrder--;
+      todoItem.isBusy = true;
+      todoItem.isBeingEdited = false;
 
-        this.group.todos.splice(itemIndex, 1);
-      });
+      // TODO: rollback if update fails
+      this.group.todos.splice(itemIndex, 1);
+      for (let i = itemIndex + 1; i < this.group.todos.length; i++)
+        this.group.todos[i].userOrder--;
+
+      await this.todoItemService.removeItem(todoItem.id).toPromise();
     }
   }
 
@@ -76,6 +83,7 @@ export class TodoGroupComponent {
   }
   // endregion
 
+  // TODO: roll the move operation back if update fails
   public async itemDragEnd(oldIndex: number, todoItem: ITodoItemViewModel, newIndex: number) {
     let nextSibling = this.group.todos[newIndex + 1];
     let prevSibling = this.group.todos[newIndex - 1];
@@ -113,13 +121,15 @@ export class TodoGroupComponent {
     }
     todoItem.userOrder = newUserOrder;
 
+
     let itemUpdates = {
       userOrder: newUserOrder,
       groupId: this.group.id
     };
-    // TODO: roll the move operation back if update fails
-    this.todoItemService.updateItem(todoItem.id, itemUpdates).subscribe(o => {
-      todoItem.groupId = this.group.id;
-    });
+
+    todoItem.isBusy = true;
+    await this.todoItemService.updateItem(todoItem.id, itemUpdates).toPromise();
+    todoItem.groupId = this.group.id;
+    todoItem.isBusy = false;
   }
 }

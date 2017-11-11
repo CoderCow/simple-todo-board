@@ -40,3 +40,13 @@ textarea.todo-description {
 :host(.dnd-sortable-drag) mat-card {
   border: 2px dashed rgba(0, 0, 0, .6);
 }
+
+:host {
+  position: relative;
+}
+
+loading-spinner {
+  position: absolute;
+  right: 28px;
+  top: 4px;
+}

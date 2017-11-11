@@ -7,9 +7,11 @@ import { ITodoItem } from "../../models/ITodoItem";
 
 @Component({
   selector: "app-home",
-  templateUrl: "./todo-board.component.html"
+  templateUrl: "./todo-board.component.html",
+  styleUrls: ["./todo-board.component.scss"]
 })
 export class TodoBoardComponent implements OnInit {
+  public isLoading: boolean = true;
   public todoGroups: ITodoGroup[];
 
   constructor(
@@ -19,6 +21,7 @@ export class TodoBoardComponent implements OnInit {
   public ngOnInit() {
     this.groupService.getGroups().subscribe(groups => {
       this.todoGroups = groups;
+      this.isLoading = false;
     });
   }
 }

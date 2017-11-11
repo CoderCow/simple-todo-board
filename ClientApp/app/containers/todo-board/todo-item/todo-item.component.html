@@ -41,3 +41,5 @@
 
   <ng-container *ngIf="todo.isBeingEdited; then editMode else normalMode"></ng-container>
 </mat-card>
+
+<loading-spinner *ngIf="todo.isBusy" size="small"></loading-spinner>

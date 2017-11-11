@@ -1,4 +1,5 @@
-<div fxFill fxLayout="row" fxLayoutGap="20px">
+<loading-spinner *ngIf="isLoading" size="large"></loading-spinner>
+<div *ngIf="!isLoading" fxFill fxLayout="row" fxLayoutGap="20px">
   <todo-group
     *ngFor="let todoGroup of todoGroups; let i = index"
     [group]="todoGroup"

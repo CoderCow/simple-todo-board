@@ -50,12 +50,15 @@ export class TodoItemComponent {
     this.editFocusTargetQuerySelector = editFocusTargetQuerySelector;
   }
 
-  public endEdit(doSave: boolean) {
+  public async endEdit(doSave: boolean): Promise<any> {
     if (doSave) {
-      this.todoItemService.updateItem(this.editingTodo.id, this.editingTodo).subscribe(o => {
-        Object.assign(this.todo, this.editingTodo);
-        this.todo.isBeingEdited = false;
-      });
+      // TODO: rollback if update fails
+      Object.assign(this.todo, this.editingTodo);
+      this.todo.isBeingEdited = false;
+
+      this.todo.isBusy = true;
+      await this.todoItemService.updateItem(this.editingTodo.id, this.editingTodo).toPromise();
+      this.todo.isBusy = false;
     } else {
       this.todo.isBeingEdited = false;
     }
