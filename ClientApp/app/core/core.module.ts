@@ -115,14 +115,15 @@ import { TodoGroupService } from './services/todo-group.service';
   exports: [
     NavMenuComponent,
     Autosize,
+    LoadingSpinnerComponent,
 
+    CommonModule,
     HttpModule,
     HttpClientModule,
     FormsModule,
     TransferHttpModule,
     FlexLayoutModule,
     MaterialModule,
-    LoadingSpinnerComponent,
   ],
   providers: [
     TodoGroupService,
