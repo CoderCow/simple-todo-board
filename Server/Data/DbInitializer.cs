@@ -22,6 +22,7 @@ namespace SimpleTodoList.Data {
       context.TodoGroups.AddRange(
         new TodoGroup {
           Title = "Todo",
+          UserOrder = 0,
           Todos = new List<TodoItem> {
             new TodoItem {
               Title = "Task 1",
@@ -42,6 +43,7 @@ namespace SimpleTodoList.Data {
         },
         new TodoGroup {
           Title = "Doing",
+          UserOrder = 1,
           Todos = new List<TodoItem> {
             new TodoItem {
               Title = "Task 3",
@@ -52,6 +54,10 @@ namespace SimpleTodoList.Data {
               TimeLastEdited = DateTime.UtcNow - TimeSpan.FromDays(8)
             }
           }
+        },
+        new TodoGroup {
+          Title = "Done",
+          UserOrder = 2
         }
       );
 

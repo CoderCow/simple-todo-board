@@ -7,6 +7,7 @@
 }
 
 .groupbox-wrapper {
+  padding: 20px;
   margin: 4px;
   background: rgba(0, 0, 0, .03);
   position: relative;
@@ -15,12 +16,13 @@
 .groupbox-title {
   display: flex;
   align-items: center;
-  padding: 14px 20px;
+  padding: 4px 14px 30px 0;
   color: rgba(0, 0, 0, .54);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: italic;
 }
 
 .groupbox-body {
-  padding: 30px;
   min-height: 600px;
   cursor: default !important; // need important to override ng2-dnd's cursor setting on the element
 }

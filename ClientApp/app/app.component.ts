@@ -4,7 +4,7 @@ import { Title, DOCUMENT, MetaDefinition } from "@angular/platform-browser";
 import { Subscription } from "rxjs/Subscription";
 import { isPlatformServer } from "@angular/common";
 
-import { REQUEST } from "./shared/constants/request";
+import { REQUEST } from "./core/constants/request";
 
 @Component({
   selector: "app",

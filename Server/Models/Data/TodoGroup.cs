@@ -15,6 +15,10 @@ namespace SimpleTodoList.Models.Data {
     [Range(0, Int32.MaxValue)]
     public int UserOrder { get; set; }
 
-    public ICollection<TodoItem> Todos { get; set; }
+    public virtual ICollection<TodoItem> Todos { get; set; }
+
+    public TodoGroup() {
+      this.Todos = new List<TodoItem>();
+    }
   }
 }

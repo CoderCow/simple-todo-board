@@ -1,6 +1,7 @@
 export interface ITodoItem {
   id: number;
+  groupId: number;
   title: string;
-  description: string;
-  isBeingEdited: boolean;
+  descriptionHtml: string;
+  userOrder: number;
 }

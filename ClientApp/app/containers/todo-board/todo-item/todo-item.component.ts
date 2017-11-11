@@ -1,7 +1,9 @@
+import { ITodoItemViewModel } from './../../../models/ITodoItemViewModel';
 import { Component, ElementRef, EventEmitter, Input, Output, SecurityContext, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ITodoItem } from '../../models/ITodoItem';
+import { ITodoItem } from '../../../models/ITodoItem';
 import { SafeHtml } from "@angular/platform-browser";
+import { TodoItemService } from '../../../core/services/todo-item.service';
 
 @Component({
   selector: 'todo-item',
@@ -10,21 +12,24 @@ import { SafeHtml } from "@angular/platform-browser";
 })
 export class TodoItemComponent {
   @Input()
-  public todo: ITodoItem;
+  public todo: ITodoItemViewModel;
 
   @Input()
   public get todoDescriptionHtml(): SafeHtml {
-    let withBreaks = TodoItemComponent.newlineToBr(this.todo.description);
+    let withBreaks = TodoItemComponent.newlineToBr(this.todo.descriptionHtml);
     return this.domSanitizer.sanitize(SecurityContext.HTML, withBreaks);
   }
 
   @Input()
-  public editingTodo: ITodoItem;
+  public editingTodo: ITodoItemViewModel;
 
   @Output()
   public deleteClicked = new EventEmitter();
 
-  constructor(private domSanitizer: DomSanitizer) {}
+  constructor(
+    private domSanitizer: DomSanitizer,
+    public todoItemService: TodoItemService
+  ) {}
 
   // region Editing
   private editFocusTargetQuerySelector: string;
@@ -45,12 +50,18 @@ export class TodoItemComponent {
     this.editFocusTargetQuerySelector = editFocusTargetQuerySelector;
   }
 
-  public endEdit(doSave: boolean) {
+  public async endEdit(doSave: boolean): Promise<any> {
     if (doSave) {
+      // TODO: rollback if update fails
       Object.assign(this.todo, this.editingTodo);
-    }
+      this.todo.isBeingEdited = false;
 
-    this.todo.isBeingEdited = false;
+      this.todo.isBusy = true;
+      await this.todoItemService.updateItem(this.editingTodo.id, this.editingTodo).toPromise();
+      this.todo.isBusy = false;
+    } else {
+      this.todo.isBeingEdited = false;
+    }
   }
   // endregion
 

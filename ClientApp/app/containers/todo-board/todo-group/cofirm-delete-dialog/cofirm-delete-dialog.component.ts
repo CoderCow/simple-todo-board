@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from "@angular/material";
-import { ITodoItem } from "../../../models/ITodoItem";
+import { ITodoItem } from "../../../../models/ITodoItem";
 
 @Component({
   selector: 'app-cofirm-delete-dialog',

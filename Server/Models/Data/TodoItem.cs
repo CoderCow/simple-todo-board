@@ -6,6 +6,8 @@ namespace SimpleTodoList.Models.Data {
     [Key]
     public int Id { get; set; }
 
+    public int GroupId { get; set; }
+
     [Required]
     public TodoGroup Group { get; set; }
 

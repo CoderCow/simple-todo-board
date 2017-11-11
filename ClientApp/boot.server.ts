@@ -5,7 +5,7 @@ import { INITIAL_CONFIG } from "@angular/platform-server";
 import { APP_BASE_HREF } from "@angular/common";
 import { createServerRenderer, RenderResult } from "aspnet-prerendering";
 
-import { ORIGIN_URL } from "./app/shared/constants/baseurl.constants";
+import { ORIGIN_URL } from "./app/core/constants/baseurl.constants";
 // Grab the (Node) server-specific NgModule
 import { AppModule } from "./app/app.module.server";
 // Temporary * the engine will be on npm soon (`@universal/ng-aspnetcore-engine`)
