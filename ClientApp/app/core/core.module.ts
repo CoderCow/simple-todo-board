@@ -91,6 +91,7 @@ export class MaterialModule {}
 import { Autosize } from 'angular2-autosize';
 
 import { NavMenuComponent } from "./navmenu/navmenu.component";
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 import { TodoItemService } from './services/todo-item.service';
 import { TodoGroupService } from './services/todo-group.service';
@@ -99,6 +100,7 @@ import { TodoGroupService } from './services/todo-group.service';
   declarations: [
     NavMenuComponent,
     Autosize,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -120,6 +122,7 @@ import { TodoGroupService } from './services/todo-group.service';
     TransferHttpModule,
     FlexLayoutModule,
     MaterialModule,
+    LoadingSpinnerComponent,
   ],
   providers: [
     TodoGroupService,
