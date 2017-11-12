@@ -51,20 +51,6 @@ module.exports = function(options) {
         {
           test: /\.html$/,
           loader: "raw-loader"
-        },
-        {
-          enforce: "post",
-          test: /\.(js|ts)$/,
-          loader: "istanbul-instrumenter-loader",
-          options: {
-            esModules: true
-          },
-          include: rootPath("ClientApp"),
-          exclude: [
-            /ClientApp\\test/,
-            /\.(e2e|spec)\.ts$/,
-            /node_modules/
-          ]
         }
       ]
     },
@@ -83,7 +69,7 @@ module.exports = function(options) {
           /**
            * your Angular Async Route paths relative to this root directory
            */
-        
+
         }
       ),
       new LoaderOptionsPlugin({
@@ -92,7 +78,7 @@ module.exports = function(options) {
           /**
            * legacy options go here
            */
-        
+
         }
       }),
     ],
