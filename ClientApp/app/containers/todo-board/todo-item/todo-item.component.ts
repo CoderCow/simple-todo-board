@@ -45,8 +45,8 @@ export class TodoItemComponent {
     if (this.todo.isBeingEdited)
       return;
 
-    this.editingTodo = Object.assign({}, this.todo);
     this.todo.isBeingEdited = true;
+    this.editingTodo = Object.assign({}, this.todo);
     this.editFocusTargetQuerySelector = editFocusTargetQuerySelector;
   }
 

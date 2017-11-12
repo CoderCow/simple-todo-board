@@ -31,3 +31,10 @@ export class TodoItemService {
     return this.http.delete(this.baseUrl + "/v1/todo-items/" + id).delay(1000);
   }
 }
+
+export class TodoItemServiceStub {
+  public getItem = jasmine.createSpy('getItem');
+  public updateItem = jasmine.createSpy('updateItem');
+  public addItem = jasmine.createSpy('addItem');
+  public removeItem = jasmine.createSpy('removeItem');
+}

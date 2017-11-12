@@ -11,7 +11,7 @@ import { ITodoItem } from "../../models/ITodoItem";
   styleUrls: ["./todo-board.component.scss"]
 })
 export class TodoBoardComponent implements OnInit {
-  public isLoading: boolean = true;
+  public isLoading: boolean;
   public todoGroups: ITodoGroup[];
 
   constructor(
@@ -19,6 +19,7 @@ export class TodoBoardComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
+    this.isLoading = true;
     this.groupService.getGroups().subscribe(groups => {
       this.todoGroups = groups;
       this.isLoading = false;

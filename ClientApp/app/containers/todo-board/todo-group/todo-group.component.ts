@@ -36,11 +36,13 @@ export class TodoGroupComponent {
     public todoItemService: TodoItemService
   ) {}
 
-  public async addItem(item: ITodoItemViewModel = undefined) {
+  public async addItem(item: ITodoItemViewModel = undefined): Promise<any> {
     if (!item)
       item = Object.assign({}, TodoGroupComponent.newItemTemplate);
 
     item.groupId = this.group.id;
+    item.userOrder = 0;
+    item.isBusy = true;
 
     // TODO: rollback if adding fails
     this.group.todos.forEach(i => i.userOrder++);
@@ -60,13 +62,11 @@ export class TodoGroupComponent {
     }
 
     if (await this.confirmDelete(todoItem)) {
-      todoItem.isBusy = true;
-      todoItem.isBeingEdited = false;
+      for (let i = itemIndex + 1; i < this.group.todos.length; i++)
+        this.group.todos[i].userOrder--;
 
       // TODO: rollback if update fails
       this.group.todos.splice(itemIndex, 1);
-      for (let i = itemIndex + 1; i < this.group.todos.length; i++)
-        this.group.todos[i].userOrder--;
 
       await this.todoItemService.removeItem(todoItem.id).toPromise();
     }

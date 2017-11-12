@@ -25,3 +25,8 @@ export class TodoGroupService {
     return this.http.get<ITodoGroup>(this.baseUrl + "/v1/todo-groups/" + id).delay(1000);
   }
 }
+
+export class TodoGroupServiceStub {
+  public getGroups = jasmine.createSpy('getGroups');
+  public getGroup = jasmine.createSpy('getGroups');
+}
