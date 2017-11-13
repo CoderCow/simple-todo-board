@@ -20,5 +20,8 @@ namespace SimpleTodoBoard.Models.Data {
     public TodoGroup() {
       this.Todos = new List<TodoItem>();
     }
+
+    public override string ToString() =>
+      $"{{Id: {this.Id}, Title: {this.Title}, UserOrder: {this.UserOrder}, Todos: {this.Todos.ToString() ?? "null"}}}";
   }
 }

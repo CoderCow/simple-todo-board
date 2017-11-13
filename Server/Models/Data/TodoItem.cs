@@ -28,5 +28,8 @@ namespace SimpleTodoBoard.Models.Data {
     [Required]
     [Range(0, Int32.MaxValue)]
     public int UserOrder { get; set; }
+
+    public override string ToString() =>
+      $"{{Id: {this.Id}, GroupId: {this.GroupId}, Title: {this.Title}, UserOrder: {this.UserOrder}}}";
   }
 }
