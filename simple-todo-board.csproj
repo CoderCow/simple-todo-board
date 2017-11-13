@@ -5,6 +5,8 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <RootNamespace>SimpleTodoBoard</RootNamespace>
+    <!-- Prevents vstest from injecting its own entrypoint. -->
+    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- New Meta Package has SpaServices in It -->
@@ -14,6 +16,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="fluentassertions" Version="4.19.4" />
+    <PackageReference Include="AutoFixture" Version="4.0.0-rc1" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.0.0-rc1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->

@@ -33,11 +33,10 @@ namespace SimpleTodoBoard.RestAPI {
 
       TodoGroup todoGroup = await this.TodoGroupById(todoData.GroupId);
       if (todoGroup == null)
-        this.BadRequest("Invalid group id.");
+        return this.BadRequest("Invalid group id.");
 
       TodoItem newTodoItem = todoData.ToModel(todoGroup);
 
-      // fix user order
       await this.context.TodoItems
         .Where(i => i.GroupId == todoGroup.Id)
         .Where(i => i.UserOrder >= todoData.UserOrder)
@@ -59,20 +58,25 @@ namespace SimpleTodoBoard.RestAPI {
       if (itemToUpdate == null)
         return this.NotFound();
 
-      await ChangeModelByPutModel(itemToUpdate, newTodoData);
+      try {
+        await AssignPutModelToModel(itemToUpdate, newTodoData);
+      } catch (Exception e) {
+        return this.BadRequest(e.Message);
+      }
 
+      itemToUpdate.TimeLastEdited = DateTime.UtcNow;
       this.context.Update(itemToUpdate);
       await this.context.SaveChangesAsync();
 
       return this.NoContent();
     }
 
-    private async Task ChangeModelByPutModel(TodoItem itemToUpdate, TodoItemPutViewModel putModel) {
+    private async Task AssignPutModelToModel(TodoItem itemToUpdate, TodoItemPutViewModel putModel) {
       bool doChangeGroupId = putModel.GroupId != null && itemToUpdate.GroupId != putModel.GroupId;
       if (doChangeGroupId) {
         TodoGroup newTodoGroup = await TodoGroupById(putModel.GroupId.Value);
         if (newTodoGroup == null)
-          this.BadRequest("Invalid group id.");
+          throw new Exception("Invalid group id.");
 
         itemToUpdate.Group = newTodoGroup;
       }
@@ -83,7 +87,7 @@ namespace SimpleTodoBoard.RestAPI {
 
       bool doChangeDescription = putModel.DescriptionHtml != null;
       if (doChangeDescription)
-        itemToUpdate.DescriptionHtml = itemToUpdate.DescriptionHtml == string.Empty ? null : putModel.DescriptionHtml;
+        itemToUpdate.DescriptionHtml = putModel.DescriptionHtml == string.Empty ? null : putModel.DescriptionHtml;
 
       bool doChangeUserOrder = putModel.UserOrder != null;
       // if item was moved

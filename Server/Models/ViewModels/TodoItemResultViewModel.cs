@@ -14,7 +14,7 @@ namespace SimpleTodoBoard.Models {
     public static TodoItemResultViewModel FromModel(TodoItem todoItem) =>
       new TodoItemResultViewModel {
         Id = todoItem.Id,
-        GroupId = todoItem.Group.Id,
+        GroupId = todoItem.GroupId,
         Title = todoItem.Title,
         DescriptionHtml = todoItem.DescriptionHtml,
         UserOrder = todoItem.UserOrder
